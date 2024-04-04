@@ -20,6 +20,7 @@ export default function SearchShoes() {
                         .integer('Invalid shoe size!')
                         .positive('Invalid shoe size!')
                         .max(16, 'Invalid shoe size!')
+                        .min(1,'Invalid shoe size!')
                 
                 })}
                 onSubmit={ (values, { setSubmitting } ) => {

@@ -43,6 +43,8 @@ npm i @vercel/postgres
 ```
 The database is ran on Vercel, under the Hobby tier at this time. We use the VSCode extention [SQLTools](https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools) to write queries to interact with the database. Install it as well as the corresponding [PostgreSQL drivers](https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools-driver-pg).
 
+We use SQLTools because the hobby tier only allows one account to interact with the database at this time, so by setting up an access point on VSCode, devs can run and test queries without having to DM An Dang on Discord.
+
 When setting up the database connection with SQLTools:
 - Grab the database host, database name, username, and password from the Discord channel, in the pinned message.
 - Enter the host, database name, and username into the corresponding fields in the SQLTools connection setup window.

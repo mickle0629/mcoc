@@ -78,6 +78,11 @@ export default function EntryForm() {
                     <Field name="email" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Email" />
                     <ErrorMessage name="email" />
                 </div>
+
+                <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
+                    <Field name="confirmemail" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Confirm Email" />
+                    <ErrorMessage name="confirmemail" />
+                </div>
                 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
                     <Field name="phoneNumber" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Phone Number" />

@@ -5,6 +5,11 @@ interface InventoryItem {
   type: string;
   size: string;
   quantity: number;
+
+}
+interface RecentOrders{
+  orderName: string; // this should pull from the db
+  orderNumber: number; // this should also pull from the db
 }
 
 const InventoryPage: React.FC = () => {
@@ -17,19 +22,17 @@ const InventoryPage: React.FC = () => {
     { id: '5', type: 'Men', size: '9', quantity: 12 },
     { id: '6', type: 'Women', size: '8', quantity: 15 },
   ];
+  const placeholderInventory2: RecentOrders[] = [
+    { orderName: 'Pete Tucker', orderNumber: 101 },
+    { orderName: 'Kent Jones', orderNumber: 102 },
+    { orderName: 'Qian Mao', orderNumber: 103 },
+    { orderName: 'Scott Griffith', orderNumber: 104 }
+    
+  ];
 
   return (
-    <main className="flex flex-col bg-white min-h-screen">
-    <div
-      style={{
-        backgroundColor: 'white',
-        color: 'black',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: '20px',
-      }}
-    >
+    <main className="flex bg-white justify-center min-h-screen">
+    <div className="bg-white text-black flex flex-col items-left p-7">
       <h1 style={{fontSize: '200%', padding: '10px', paddingBottom: '15px'}}>Current Inventory</h1>
       <div style={{ width: '100%', maxWidth: '400px' }}>
         {placeholderInventory.map((item) => (
@@ -44,8 +47,33 @@ const InventoryPage: React.FC = () => {
           >
             <p>{`${item.type} - Size ${item.size}`}</p>
             <p>{`Quantity: ${item.quantity}`}</p>
+            
           </div>
         ))}
+        <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full">Print Shopping List</button>
+        <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12">View Full Inventory</button>
+      </div>
+    </div>
+
+    <div className="bg-white text-black flex flex-col items-right p-7">
+      <h1 style={{fontSize: '200%', padding: '10px', paddingBottom: '15px'}}>Recent Orders</h1>
+      <div style={{ width: '100%', maxWidth: '400px' }}>
+      {placeholderInventory2.map((item) => (
+          <div
+            key={item.orderName}
+            style={{
+              backgroundColor: '#f2f2f2',
+              borderRadius: '10px',
+              padding: '10px',
+              marginBottom: '10px',
+            }}
+          >
+            <p>{`${item.orderName} - ${item.orderNumber}`}</p>
+            <button>{`View Order Info`}</button>
+            
+          </div>
+        ))}
+        <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12">View All Orders</button>
       </div>
     </div>
     </main>

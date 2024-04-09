@@ -35,13 +35,6 @@ const InventoryPage: React.FC = () => {
     <div className="bg-white text-black flex flex-col items-left p-7">
       <h1 className="text-3xl p-10 pb-15 pl-16">Current Inventory</h1>
       <div className="w-full max-w-md">
-
-    {/* <main className="flex flex-col bg-white min-h-screen">
-    <div className="bg-white text-black flex flex-col items-left p-10 pl-40">
-      <h1 className="text-3xl p-10 pb-15 pl-16">Current Inventory</h1>
-      <div className="w-full max-w-md">
-        {placeholderInventory.map((item) => (
-          <div className="bg-slate-200 rounded-lg p-5 mb-2.5" */}
         {placeholderInventory.map((item) => (
           <div key={item.id} className="bg-slate-200 rounded-lg p-5 mb-2.5">
             <p>{`${item.type} - Size ${item.size}`}</p>

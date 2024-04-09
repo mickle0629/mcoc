@@ -8,6 +8,8 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useRouter } from "next/navigation";
 import * as Yup from 'yup';
 
+import { insertParent } from "../actions";
+
 export default function EntryForm() {
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
     const router = useRouter();
@@ -47,12 +49,14 @@ export default function EntryForm() {
             onSubmit={ (values, { setSubmitting } ) => {
                 //TODO: Get rid of setTimeout
                 //TODO: Code for updating database entries here
+                insertParent(values);
                 setTimeout(() => {
                     alert(JSON.stringify(values, null, 2));
+                    alert(typeof values.zip);
                     setSubmitting(false);
                 }, 400)
                 //Changes current path to the shoe-browsing section
-                router.push('/browse')
+                router.push('/browse');
             }}
         >
             <Form className="flex flex-col justify-center text-left gap-5 w-72 items-center mx-auto my-40">

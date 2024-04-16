@@ -31,10 +31,10 @@ const InventoryPage: React.FC = () => {
   ];
 
   return (
-    <main className="flex bg-white justify-center min-h-screen">
+    <main className="flex bg-white justify-center min-h-screen borderRadius-10px">
     <div className="bg-white text-black flex flex-col items-left p-7">
-      <h1 style={{fontSize: '200%', padding: '10px', paddingBottom: '15px'}}>Current Inventory</h1>
-      <div style={{ width: '100%', maxWidth: '400px' }}>
+      <h1 style={{fontSize: '200%', padding: '10px', paddingBottom: '15px', alignItems: 'center'}}>Current Inventory</h1>
+      <div style={{ width: '100%', maxWidth: '300px' }}>
         {placeholderInventory.map((item) => (
           <div
             key={item.id}
@@ -50,13 +50,13 @@ const InventoryPage: React.FC = () => {
             
           </div>
         ))}
-        <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full">Print Shopping List</button>
-        <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12">View Full Inventory</button>
+        <button type="submit" className="px-14 py-2 mb-2 bg-green-500 items-center text-white text-md rounded-full width-100">Print Shopping List</button>
+        <button type="submit" className="px-14 py-2 mb-2 bg-green-500 items-center text-white text-lg rounded-full px-12">View Full Inventory</button>
       </div>
     </div>
 
     <div className="bg-white text-black flex flex-col items-right p-7">
-      <h1 style={{fontSize: '200%', padding: '10px', paddingBottom: '15px'}}>Recent Orders</h1>
+      <h1 style={{fontSize: '200%', padding: '10px', paddingBottom: '15px', alignItems: 'center'}}>Recent Orders</h1>
       <div style={{ width: '100%', maxWidth: '400px' }}>
       {placeholderInventory2.map((item) => (
           <div
@@ -69,11 +69,11 @@ const InventoryPage: React.FC = () => {
             }}
           >
             <p>{`${item.orderName} - ${item.orderNumber}`}</p>
-            <button>{`View Order Info`}</button>
+            <button type="submit" className="px-10 py-2 mb-2 bg-white-500 text-black text-sm rounded-full">View Order Info</button>
             
           </div>
         ))}
-        <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12">View All Orders</button>
+        <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full">View All Orders</button>
       </div>
     </div>
     </main>

@@ -7,10 +7,13 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useRouter } from "next/navigation";
 import * as Yup from 'yup';
+import { BulkOrder } from "../definitions";
 
 import { insertParent } from "../actions";
 
-export default function EntryForm() {
+export default function EntryForm(
+    { bulkOrder } : { bulkOrder : BulkOrder }
+) {
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
     const router = useRouter();
 
@@ -48,11 +51,17 @@ export default function EntryForm() {
             //handles submit events with a function that parses the submitted values into JSON formatted string and displays it in alert() after 400ms.
             onSubmit={ (values, { setSubmitting } ) => {
                 //TODO: Get rid of setTimeout
-                //TODO: Code for updating database entries here
-                insertParent(values);
+                //Initialize and insert parent info into BulkOrder type
+                //Pass current BulkOrder type to /browse page.
+                bulkOrder.parent.firstName = values.firstName;
+                bulkOrder.parent.lastName = values.lastName;
+                bulkOrder.parent.email = values.email;
+                bulkOrder.parent.phoneNumber = values.phoneNumber;
+                bulkOrder.parent.zip = values.zip;
+                //insertParent(values);
                 setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    alert(typeof values.zip);
+                    //alert(JSON.stringify(values, null, 2));
+                    alert(JSON.stringify(bulkOrder));
                     setSubmitting(false);
                 }, 400)
                 //Changes current path to the shoe-browsing section

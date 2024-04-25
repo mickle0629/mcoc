@@ -8,12 +8,10 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useRouter } from "next/navigation";
 import * as Yup from 'yup';
 
-import { insertParent } from "../actions";
-
-export default function EntryForm() {
+export default function EntryFormKid() {
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
     const router = useRouter();
-    //const checkEmail = '';
+    const gradeLims = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
     return (
         <Formik
@@ -21,10 +19,12 @@ export default function EntryForm() {
             initialValues={{
                 firstName: '',
                 lastName: '',
-                email: '',
-                confirmEmail: '',
-                phoneNumber: '',
-                zip: ''
+                age: '',
+                dateOfBirth: '',
+                gradeOfSchool: '',
+                schoolAttend: '',
+                shoeSize: '',
+                shoeStyle:'',
             }}
             //input verification using Yup
             validationSchema={Yup.object({
@@ -33,35 +33,30 @@ export default function EntryForm() {
                     .required('Required!'),
                 lastName: Yup.string()
                     .required('Required!'),
-                email: Yup.string()
-                    .email('Invalid email address!')
+                age: Yup.number()
+                    .integer('Please use numbers to enter age')
                     .required('Required!'),
-                //confirmEmail: Yup.string()
-                   // .email('Invalid email address')
-                    //.matches(,'Must match the first email')
-                    //.required('Required'),
-                phoneNumber: Yup.string()
-                    .matches(phoneRegExp, 'Not a valid phone number.')
+                dateOfBirth: Yup.string()
+                    .defined('not defined')
+                    .datetime('buh')
                     .required('Required!'),
-                //TODO: when entering letters, error message is "zip must be a `number` type, but the final value was: `NaN` (cast from the value `"w"`)." Get better errors msg here.
-                //      ESPECIALLY BIG ISSUE on small screen
-                zip: Yup.number()
-                    .positive('Invalid ZIP code')
-                    .integer('Invalid ZIP code')
-                    .required('Required')
+                gradeOfSchool: Yup.string()    
+                    .matches(gradeLims, 'Must be Between Grades K-8')
+                    .length(1,'Use \'K\' or 1-8')
+                    .required('Required!'),
+                schoolAttend: Yup.string()
+                    .required('Required!'),
             })}
             //handles submit events with a function that parses the submitted values into JSON formatted string and displays it in alert() after 400ms.
             onSubmit={ (values, { setSubmitting } ) => {
                 //TODO: Get rid of setTimeout
                 //TODO: Code for updating database entries here
-                insertParent(values);
                 setTimeout(() => {
                     alert(JSON.stringify(values, null, 2));
-                    alert(typeof values.zip);
                     setSubmitting(false);
                 }, 400)
                 //Changes current path to the shoe-browsing section
-                router.push('/browse');
+                router.push('/browse')
             }}
         >
             <Form className="flex flex-col justify-center text-left gap-5 w-72 items-center mx-auto my-40">
@@ -70,33 +65,33 @@ export default function EntryForm() {
                 
                 {/* Individual fields here. Each field has a wrapping div for styling purposes */}
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="firstName" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="First Name" />
-                    <ErrorMessage name="firstName" className="" />
+                    <Field name="kidFirstName" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="First Name" />
+                    <ErrorMessage name="KidFirstName" className="" />
                 </div>
                 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="lastName" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Last Name" />
-                    <ErrorMessage name="lastName" />
+                    <Field name="kidLastName" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Last Name" />
+                    <ErrorMessage name="KidLastName" />
                 </div>
 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="email" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Email" />
-                    <ErrorMessage name="email" />
-                </div>
-
-                <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="confirmemail" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Confirm Email" />
-                    <ErrorMessage name="confirmemail" />
+                    <Field name="kidAge" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Age" />
+                    <ErrorMessage name="Kid's Age" />
                 </div>
                 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="phoneNumber" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Phone Number" />
-                    <ErrorMessage name="phoneNumber" />
+                    <Field name="kidDOB" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Date of Birth" />
+                    <ErrorMessage name="Date Of Birth" />
                 </div>
 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="zip" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="ZIP Code" />
-                    <ErrorMessage name="zip"/>
+                    <Field name="kidGrade" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Grade in School" />
+                    <ErrorMessage name= "grade"/>
+                </div>
+
+                <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
+                    <Field name="kidSchool" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="School Attending" />
+                    <ErrorMessage name="school"/>
                 </div>
 
                 <button type="submit" className="px-10 py-2 mb-2 bg-green-500 text-white rounded-full">Confirm Information</button>

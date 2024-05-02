@@ -36,6 +36,9 @@ export default function EntryForm() {
                 email: Yup.string()
                     .email('Invalid email address!')
                     .required('Required!'),
+                confirmEmail: Yup.string()
+                    .email('Invalid email address!')
+                    .required('Required!'),
                 //confirmEmail: Yup.string()
                    // .email('Invalid email address')
                     //.matches(,'Must match the first email')
@@ -54,7 +57,7 @@ export default function EntryForm() {
             onSubmit={ (values, { setSubmitting } ) => {
                 //TODO: Get rid of setTimeout
                 //TODO: Code for updating database entries here
-                // insertParent(values);
+                insertParent(values);
                 setTimeout(() => {
                     alert(JSON.stringify(values, null, 2));
                     alert(typeof values.zip);
@@ -85,8 +88,8 @@ export default function EntryForm() {
                 </div>
 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="confirmemail" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Confirm Email" />
-                    <ErrorMessage name="confirmemail" />
+                    <Field name="confirmEmail" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Confirm Email" />
+                    <ErrorMessage name="confirmEmail" />
                 </div>
                 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">

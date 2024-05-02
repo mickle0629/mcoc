@@ -39,6 +39,10 @@ export default function EntryForm() {
                 confirmEmail: Yup.string()
                     .email('Invalid email address!')
                     .required('Required!'),
+                //confirmEmail: Yup.string()
+                   // .email('Invalid email address')
+                    //.matches(,'Must match the first email')
+                    //.required('Required'),
                 phoneNumber: Yup.string()
                     .matches(phoneRegExp, 'Not a valid phone number.')
                     .required('Required!'),

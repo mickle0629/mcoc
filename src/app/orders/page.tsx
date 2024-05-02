@@ -23,23 +23,45 @@ const InventoryPage: React.FC = () => {
     { id: '6', type: 'Women', size: '8', quantity: 15 },
   ];
 
+  
+
   return (
-    <main className="flex bg-white justify-left min-h-screen py-2 px-20">
-        <div className="bg-white text-black flex flex-col items-left p-7">
-        <h1 className="text-3xl py-7">Orders</h1>
+<main className="flex bg-white justify-center min-h-screen py-2 px-20">
+    <div className="bg-white text-black flex flex-col items-center p-7 p-10 w-[80vw]">
+        <div className="flex justify-between w-full items-center mb-5">
+            <h1 className="text-3xl">Orders</h1>
+            <div className="flex items-center">
+                <label htmlFor="sortBy" className="mr-2">Sort by:</label>
+                <select name="sortBy" id="sortBy" className="px-2 py-1 border border-gray-300 rounded-md">
+                    <option value="orderNumber">Order Number</option>
+                    {/* Add more sorting options as needed */}
+                </select>
+                <input type="text" placeholder="Search orders" className="ml-2 px-2 py-1 border border-gray-300 rounded-md" />
+            </div>
+        </div>
         <div className="w-full">
             {placeholderInventory.map((item) => (
-            <div key={item.id} className="bg-slate-200 rounded-lg p-5 mb-2.5">
-                <p>{`${item.type} - Size ${item.size}`}</p>
-                <p>{`Quantity: ${item.quantity}`}</p>
-                
-            </div>
+                <div key={item.id} className="bg-slate-200 rounded-lg p-5 mb-2.5 flex justify-between items-center">
+                    <div>
+                        <p>{`${item.type} - Size ${item.size}`}</p>
+                        <p>{`Quantity: ${item.quantity}`}</p>
+                    </div>
+                    <button type="button" className="bg-slate-500 px-4 py-1 bg-blue-500 text-white text-sm rounded-full">
+                        View Order Info
+                    </button>
+                </div>
             ))}
-            <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full">Print Shopping List</button>
-            <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12">View Full Inventory</button>
+            <div className="flex justify-center">
+                <button type="submit" className="px-10 py-2 mb-2 bg-green-500 text-white text-md rounded-full">
+                    Print Orders
+                </button>
+            </div>
         </div>
-        </div>
-    </main>
+    </div>
+</main>
+
+
+
   );
 };
 

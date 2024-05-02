@@ -1,3 +1,18 @@
 {
-    "liveServer.settings.port": 5502
+    "liveServer.settings.port": 5502,
+    "sqltools.connections": [
+        {
+            "pgOptions": {
+                "ssl": true
+            },
+            "previewLimit": 50,
+            "server": "ep-orange-violet-a481za6u-pooler.us-east-1.aws.neon.tech",
+            "port": 5432,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "username": "default",
+            "database": "verceldb",
+            "name": "MikelTest"
+        }
+    ]
 }

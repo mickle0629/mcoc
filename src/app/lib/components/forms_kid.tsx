@@ -85,7 +85,9 @@ export default function EntryFormKid() {
                 </div>
 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="kidGrade" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Grade in School" />
+                    <Field name="kidGrade" as="select" className="my-select border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Grade in School" />
+                        <option value="Pre">PreK</option>
+                        <option value="Kindergarten">Kindergarten</option>
                     <ErrorMessage name= "grade"/>
                 </div>
 
@@ -97,5 +99,7 @@ export default function EntryFormKid() {
                 <button type="submit" className="px-10 py-2 mb-2 bg-green-500 text-white rounded-full">Confirm Information</button>
             </Form>
         </Formik>
+        
     );
 }
+

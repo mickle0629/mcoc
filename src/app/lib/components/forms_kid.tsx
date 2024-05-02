@@ -4,9 +4,25 @@
  */
 
 'use client'
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form, ErrorMessage, useField } from "formik";
 import { useRouter } from "next/navigation";
 import * as Yup from 'yup';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+
+const MySelect = ({ label, ...props }) => {
+    const [field, meta] = useField(props);
+    return (
+      <div>
+        <label htmlFor={props.id || props.name}>{label}</label>
+        <select {...field} {...props} />
+        {meta.touched && meta.error ? (
+          <div className="error">{meta.error}</div>
+        ) : null}
+      </div>
+    );
+  };
 
 export default function EntryFormKid() {
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -85,10 +101,23 @@ export default function EntryFormKid() {
                 </div>
 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="kidGrade" as="select" className="my-select border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Grade in School" />
-                        <option value="Pre">PreK</option>
-                        <option value="Kindergarten">Kindergarten</option>
+                    {/* <Field name="kidGrade" as="select" className="my-select border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Grade in School" /> */}
+                        <MySelect label="" name="kidGrade" className="my-select border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Grade in School">
+                            <option value="" className="">Grade in School</option>
+                            <option value="designer">Preschool</option>
+                            <option value="development">Kindergarten</option>
+                            <option value="product">1st Grade</option>
+                            <option value="other">2nd Grade</option>
+                            <option value="other">3rd Grade</option>
+                            <option value="other">4th Grade</option>
+                            <option value="other">5th Grade</option>
+                            <option value="other">6th Grade</option>
+                            <option value="other">7th Grade</option>
+                            <option value="other">8th Grade</option>
+                        </MySelect>
                     <ErrorMessage name= "grade"/>
+
+                    
                 </div>
 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">

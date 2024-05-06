@@ -1,4 +1,7 @@
-import React from 'react';
+ 'use client'
+
+import React, { useState, useEffect } from 'react';
+
 
 import { sql } from '@vercel/postgres';
 import { selectParentIDfromOrder } from "./actions";
@@ -7,6 +10,9 @@ import { selectParentlname } from "./actions";
 import { selectParentemail } from "./actions";
 import { selectParentNumber } from "./actions";
 import { validateHeaderValue } from 'http';
+import { pid } from 'process';
+import { object } from 'yup';
+import { parse } from 'path';
 
 
 interface InventoryItem {
@@ -39,11 +45,31 @@ const OrderSlips: React.FC = () => {
     { name: 'Steve', lName: 'Johnson', email: 'sjohnson24@my.whitworth.edu', phoneNum: "5096718282", orderID: 1 }
   ];
 
- 
+  /*
+  async function fetchParentID() {
+    try {
+      const result = await selectParentIDfromOrder(1);
+      return result;
+        //console.log(result);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
 
- 
+
+  async function fetchParentName(parent: number) {
+    try {
+      const result = await selectParentfname(parent);
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  */
 
   return (
+    
     <main className="flex flex-col bg-white min-h-screen">
     <div
       style={{
@@ -55,7 +81,7 @@ const OrderSlips: React.FC = () => {
         padding: '20px',
       }}
     >
-      <h1 style={{fontSize: '200%', padding: '10px', paddingBottom: '15px'}}>Order Confirmation</h1>
+      <h1 style={{fontSize: '200%', padding: '10px', paddingBottom: '15px'}}>Order Slip</h1>
       
 
       <div style={{ width: '100%', maxWidth: '400px' }}>
@@ -69,6 +95,7 @@ const OrderSlips: React.FC = () => {
               marginBottom: '10px',
             }}
           >
+          
             <p>{`Name: ${item.lName}, ${item.name}`}</p>
             <p>{`Email: ${item.email}`}</p>
             <p>{`Phone Number: ${item.phoneNum}`}</p>

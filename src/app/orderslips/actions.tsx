@@ -6,22 +6,30 @@
 
 'use server';
 
-import { createPool, sql } from '@vercel/postgres';
-import { Order } from './definitions';
-import pg from 'pg';
+import { sql } from '@vercel/postgres';
+import { Parent } from './definitions';
+import { get } from 'https';
 
- export async function selectParentIDfromOrder(OrderID: number) {
-    try {await sql`
+
+
+
+export async function selectParentIDfromOrder(OrderID: number): Promise<number> {
+    try {const id = await sql`
     SELECT idparent
     FROM orders
     WHERE OrderID = ${OrderID};
-    `;} catch(err) {
-        console.log('Error =>' + err);
-        return err;
-    }
+    `;
+    const idAsString = id.rows[0].idparent;
+    const idAsInt = parseInt(idAsString, 10);
     
-}
- 
+    console.log(idAsInt)
+    return idAsInt} catch(err) {
+            console.log('Error =>' + err);
+            throw err;
+        }
+    
+    }
+
 export async function selectParentfname(ParentID: number) {
     await sql`
     SELECT fname

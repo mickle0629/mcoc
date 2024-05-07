@@ -4,9 +4,25 @@
  */
 
 'use client'
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form, ErrorMessage, useField } from "formik";
 import { useRouter } from "next/navigation";
 import * as Yup from 'yup';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+
+const MySelect = ({ label, ...props }) => {
+    const [field, meta] = useField(props);
+    return (
+      <div>
+        <label htmlFor={props.id || props.name}>{label}</label>
+        <select {...field} {...props} />
+        {meta.touched && meta.error ? (
+          <div className="error">{meta.error}</div>
+        ) : null}
+      </div>
+    );
+  };
 
 export default function EntryFormKid() {
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -85,8 +101,28 @@ export default function EntryFormKid() {
                 </div>
 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="kidGrade" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Grade in School" />
-                    <ErrorMessage name= "grade"/>
+                    <div className="form-field indent-4 min-h-12 w-[13.5rem] border-2 border-gray-500 rounded-lg">
+                        <Field name="kidGrade" as="select" className="pt-3 block w-full py-2 px-3 border-0 rounded-lg text-gray-400">
+                            <option value="">Grade in School</option>
+                            <optgroup label="PreK & Kinder" className="text-black">
+                                <option value="preschool">Preschool</option>
+                                <option value="kindergarten">Kindergarten</option>
+                            </optgroup>
+                            <optgroup label="Elementary School" className="text-black">
+                                <option value="first_grade">1st Grade</option>
+                                <option value="second_grade">2nd Grade</option>
+                                <option value="third_grade">3rd Grade</option>
+                                <option value="fourth_grade">4th Grade</option>
+                                <option value="fifth_grade">5th Grade</option>
+                            </optgroup>
+                            <optgroup label="Middle School" className="text-black">
+                                <option value="sixth_grade">6th Grade</option>
+                                <option value="seventh_grade">7th Grade</option>
+                                <option value="eighth_grade">8th Grade</option>
+                            </optgroup>
+                        </Field>
+                    </div>
+                    <ErrorMessage name="kidGrade" />
                 </div>
 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
@@ -97,5 +133,7 @@ export default function EntryFormKid() {
                 <button type="submit" className="px-10 py-2 mb-2 bg-green-500 text-white rounded-full">Confirm Information</button>
             </Form>
         </Formik>
+        
     );
 }
+

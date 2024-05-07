@@ -57,7 +57,7 @@ export default function EntryForm() {
             onSubmit={ (values, { setSubmitting } ) => {
                 //TODO: Get rid of setTimeout
                 //TODO: Code for updating database entries here
-                //insertParent(values);
+                insertParent(values);
                 setTimeout(() => {
                     alert(JSON.stringify(values, null, 2));
                     alert(typeof values.zip);

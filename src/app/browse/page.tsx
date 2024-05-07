@@ -1,4 +1,4 @@
-import SearchShoes from "../lib/components/search-shoes"
+import SearchShoes from "../lib/components/select-shoes"
 
 export default function BrowseShoes() {
     return (

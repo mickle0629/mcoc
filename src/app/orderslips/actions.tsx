@@ -22,7 +22,7 @@ export async function selectParentIDfromOrder(OrderID: number): Promise<number> 
     const idAsString = id.rows[0].idparent;
     const idAsInt = parseInt(idAsString, 10);
     
-    console.log(idAsInt)
+    //console.log(idAsInt)
     return idAsInt} catch(err) {
             console.log('Error =>' + err);
             throw err;
@@ -30,34 +30,151 @@ export async function selectParentIDfromOrder(OrderID: number): Promise<number> 
     
     }
 
-export async function selectParentfname(ParentID: number) {
-    await sql`
+export async function selectParentfname(ParentID: number): Promise<string> {
+    try {const name = await sql` 
     SELECT fname
     FROM parent
-    WHERE Parentid = ${ParentID};
+    WHERE idparent = ${ParentID};
     `;
+
+    const nameAsString = name.rows[0].fname;
+    
+    console.log(nameAsString);
+    return nameAsString} catch(err) {
+            console.log('Error =>' + err);
+            throw err;
+        }
 }
 
-export async function selectParentlname(ParentID: number) {
-    await sql`
+export async function selectParentlname(ParentID: number): Promise<string> {
+    try {const lname = await sql`
     SELECT lname
     FROM parent
-    WHERE Parentid = ${ParentID});
+    WHERE idparent = ${ParentID};
     `;
+
+    const lnameAsString = lname.rows[0].lname;
+
+    return lnameAsString} catch(err) {
+        console.log('Error =>' + err);
+        throw err;
+    }
 }
 
-export async function selectParentemail(ParentID: number) {
-    await sql`
+export async function selectParentemail(ParentID: number): Promise <string> {
+    try {const email = await sql`
     SELECT email
     FROM parent
-    WHERE Parentid = ${ParentID});
+    WHERE idparent = ${ParentID};
     `;
+
+    const emailAsString = email.rows[0].email;
+
+    return emailAsString} catch(err) {
+        console.log('Error =>' + err);
+        throw err;
+    }
 }
 
-export async function selectParentNumber(ParentID: number) {
-    await sql`
+export async function selectParentNumber(ParentID: number): Promise <string> {
+    try{ const number = await sql`
     SELECT phone
     FROM parent
-    WHERE Parentid = ${ParentID});
+    WHERE idparent = ${ParentID};
     `;
+
+    const numberAsString = number.rows[0].phone;
+
+    return numberAsString} catch(err) {
+        console.log('Error =>' + err);
+        throw err;
+    }
 }
+
+export async function selectChildIDRows(ParentID : number): Promise <Array<number>> {
+    try { const id = await sql`
+    SELECT idchild
+    FROM child
+    WHERE idparent = ${ParentID};
+    `;
+
+    const idArray: Array<number> = id.rows.map(row => row.idchild);
+        console.log(idArray);
+        return idArray;
+    } catch (err) {
+        console.log('Error =>' + err);
+        throw err;
+    }
+}
+
+export async function selectChildname(ChildID : number) : Promise <string> {
+    try{ const name = await sql`
+    SELECT fname 
+    FROM child
+    WHERE idchild = ${ChildID}`
+    
+    const nameAsString = name.rows[0].fname
+
+    return nameAsString} catch(err) {
+        console.log('Error =>' + err);
+        throw err;
+    }
+}
+
+export async function selectChildlname(ChildID : number) : Promise <string> {
+    try{ const lname = await sql`
+    SELECT lname 
+    FROM child
+    WHERE idchild = ${ChildID}`
+    
+    const nameAsString = lname.rows[0].fname
+
+    return nameAsString} catch(err) {
+        console.log('Error =>' + err);
+        throw err;
+    }
+}
+
+export async function selectChildShoeType(ChildID: number): Promise <number> {
+    try{const type = await sql`
+    SELECT shoetype
+    FROM child
+    WHERE idchild = ${ChildID}`
+
+    const typeAsString = type.rows[0].idparent;
+    const typeAsInt = parseInt(typeAsString, 10);
+    
+    //console.log(idAsInt)
+    return typeAsInt} catch(err) {
+            console.log('Error =>' + err);
+            throw err;
+        }
+
+}
+
+export async function selectShoeName(ShoeTypeID: number): Promise <string> {
+    try{const shoeName = await sql`
+    SELECT shoename
+    FROM shoetype
+    WHERE shoetypeid = ${ShoeTypeID}`
+
+    const nameAsString = shoeName.rows[0].shoename;
+
+    return nameAsString} catch(err) {
+        console.log('Error =>' + err);
+        throw err;
+    }
+}
+
+export async function selectShoeSize(ChildID: number): Promise <string> {
+    try{const shoesize = await sql`
+    SELECT shoesize
+    FROM child
+    WHERE idchild = ${ChildID}` 
+    const sizeAsString = shoesize.rows[0].shoesize;
+    return sizeAsString} catch(err){
+        console.log('Error =>' + err);
+        throw err;
+    }
+}
+

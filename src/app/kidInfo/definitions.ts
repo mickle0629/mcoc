@@ -8,7 +8,6 @@ export type Child = {
     firstName: string;
     lastName: string;
     age: string;
-    dob: string;
     grade: string;
     schoolattending: string;
     shoesize:string;

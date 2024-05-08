@@ -14,7 +14,6 @@ export async function insertKid(childData: Child) {
             (${childData.firstName}, 
              ${childData.lastName}, 
              ${childData.age}, 
-             ${childData.dob}, 
              ${childData.grade},
             ${childData.schoolattending}})
     `;

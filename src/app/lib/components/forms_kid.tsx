@@ -36,7 +36,6 @@ export default function EntryFormKid() {
                 firstName: '',
                 lastName: '',
                 age: '',
-                dateOfBirth: '',
                 gradeOfSchool: '',
                 schoolAttend: '',
                 shoeSize: '',
@@ -51,10 +50,6 @@ export default function EntryFormKid() {
                     .required('Required!'),
                 age: Yup.number()
                     .integer('Please use numbers to enter age')
-                    .required('Required!'),
-                dateOfBirth: Yup.string()
-                    .defined('not defined')
-                    .datetime('buh')
                     .required('Required!'),
                 gradeOfSchool: Yup.string()    
                     .matches(gradeLims, 'Must be Between Grades K-8')
@@ -93,11 +88,6 @@ export default function EntryFormKid() {
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
                     <Field name="kidAge" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Age" />
                     <ErrorMessage name="Kid's Age" />
-                </div>
-                
-                <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="kidDOB" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Date of Birth" />
-                    <ErrorMessage name="Date Of Birth" />
                 </div>
 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">

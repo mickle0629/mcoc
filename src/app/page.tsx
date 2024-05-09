@@ -1,7 +1,6 @@
 /**
  * Starting page. Hosts the information entry component to get info from customers.
  */
-
 import EntryForm from "./lib/components/forms";
 
 export default function Home() {

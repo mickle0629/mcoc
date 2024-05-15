@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import Link from 'next/link'
 
 interface InventoryItem {
   id: string;
@@ -61,7 +63,7 @@ const InventoryPage: React.FC = () => {
               
             </div>
           ))}
-          <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12">View All Orders</button>
+          <br></br><br></br><button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12"><Link href="/orders">View All Orders</Link></button>
         </div>
       </div>
     </main>

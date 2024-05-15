@@ -1,5 +1,7 @@
 import { Formik, Field, Form, ErrorMessage } from "formik"
 import * as Yup from 'yup'
+import React from 'react';
+import Link from 'next/link'
 
 interface InventorySizes {
     id: string;
@@ -88,10 +90,9 @@ interface InventorySizes {
               
             </div>
           ))}
-          <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full">Submit</button>
+          <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full"><Link href="/kidInfo">Submit</Link></button>
         </div>
       </div>
-  
       </main>
     );
   };

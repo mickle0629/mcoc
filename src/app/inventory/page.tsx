@@ -26,48 +26,44 @@ const InventoryPage: React.FC = () => {
     { orderName: 'Pete Tucker', orderNumber: 101 },
     { orderName: 'Kent Jones', orderNumber: 102 },
     { orderName: 'Qian Mao', orderNumber: 103 },
-    { orderName: 'Scott Griffith', orderNumber: 104 }
-    
+    { orderName: 'Scott Griffith', orderNumber: 104 },
+    { orderName: 'Qian', orderNumber: 105 },
+    { orderName: 'Scott', orderNumber: 106 }
   ];
 
   return (
     <main className="flex bg-white justify-center min-h-screen">
-    <div className="bg-white text-black flex flex-col items-left p-7">
-      <h1 className="text-3xl p-10 pb-15 pl-16">Current Inventory</h1>
-      <div className="w-full max-w-md">
-        {placeholderInventory.map((item) => (
-          <div key={item.id} className="bg-slate-200 rounded-lg p-5 mb-2.5">
-            <p>{`${item.type} - Size ${item.size}`}</p>
-            <p>{`Quantity: ${item.quantity}`}</p>
-            
-          </div>
-        ))}
-        <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full">Print Shopping List</button>
-        <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12">View Full Inventory</button>
+      <div className="bg-white text-black flex flex-col items-left p-7 ">
+        <h1 className="text-3xl p-10 pb-15 pl-16">Current Inventory</h1>
+        <div className="w-full max-w-md">
+          {placeholderInventory.map((item) => (
+            <div key={item.id} className="bg-slate-200 rounded-lg p-5 mb-2.5">
+              <p>{`${item.type} - Size ${item.size}`}</p>
+              <p>{`Quantity: ${item.quantity}`}</p>
+              
+            </div>
+          ))}
+          <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full">Print List</button><br></br>
+          <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12">View Full Inventory</button>
+        </div>
       </div>
-    </div>
 
-    <div className="bg-white text-black flex flex-col items-right p-7">
-      <h1 style={{fontSize: '200%', padding: '10px', paddingBottom: '15px'}}>Recent Orders</h1>
-      <div style={{ width: '100%', maxWidth: '400px' }}>
-      {placeholderInventory2.map((item) => (
-          <div
-            key={item.orderName}
-            style={{
-              backgroundColor: '#f2f2f2',
-              borderRadius: '10px',
-              padding: '10px',
-              marginBottom: '10px',
-            }}
-          >
-            <p>{`${item.orderName} - ${item.orderNumber}`}</p>
-            <button>{`View Order Info`}</button>
-            
-          </div>
-        ))}
-        <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12">View All Orders</button>
+      <div className="bg-white text-black flex flex-col items-right p-7">
+      <h1 className="text-3xl p-10 pb-15 pl-16">Recent Orders</h1>
+        <div className="w-full max-w-md">
+        {placeholderInventory2.map((item) => (
+            <div
+              key={item.orderName}
+              className="bg-slate-200 rounded-lg p-5 mb-2.5"
+            >
+              <p>{`${item.orderName} - ${item.orderNumber}`}</p>
+              <button className="text-green-500">{`View Order Info`}</button>
+              
+            </div>
+          ))}
+          <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12">View All Orders</button>
+        </div>
       </div>
-    </div>
     </main>
   );
 };

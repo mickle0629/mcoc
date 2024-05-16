@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import Link from 'next/link'
 import {selectOrderRows, selectParentIDfromOrder, selectParentfname, selectParentlname} from "./actions";
 
+
 interface InventoryItem {
   id: string;
   type: string;
@@ -19,6 +20,7 @@ interface RecentOrders{
 interface Parent {
   name: string | null;
   lname: string | null;
+  orderid: number | null;
 }
 
 const InventoryPage: React.FC = () => {
@@ -35,14 +37,17 @@ const InventoryPage: React.FC = () => {
  
 
   const [OrderRows, setOrderRows] = useState<Array<number>| null>(null);
-  const [OrderDictionary, setOrderDictionary] = useState<{ [key: number]: Child }>({});
+  const [OrderDictionary, setOrderDictionary] = useState<{ [key: number]: Parent }>({});
   const orderEntries = Object.entries(OrderDictionary);
+
 
   useEffect(() => {
     async function fetchOrderRows() {
         try {
             const result = await selectOrderRows();
             setOrderRows(result); 
+            console.log(result[0]);
+            
         } catch (error) {
             console.error(error);
         }
@@ -56,19 +61,24 @@ useEffect(() => {
       if (OrderRows !== null) {
           const newOrderDictionary: { [key: number]: Parent } = {};
 
-          for (let i = 0; i < 7; i++) {
-              const orderID = OrderRows[i]
-              const name = await selectParentfname(orderID);
-              const lname = await selectParentlname(orderID);
+  let temp = 0        
+          for (let i = OrderRows.length - 1; i >= 0; i--) {
+            if (OrderRows.length - i > 7) break; // Stop after 7 entries
 
-
-              newOrderDictionary[orderID] = { name, lname};
+            const ID = OrderRows[i];
+            const orderid = OrderRows[(temp)];
+            const ParentID = await selectParentIDfromOrder(ID);
+            const name = await selectParentfname(ParentID);
+            const lname = await selectParentlname(ParentID);
+            newOrderDictionary[ID] = { name, lname, orderid };
+            temp++
           }
-
+          
           setOrderDictionary(newOrderDictionary);
       }
+      
   }
-
+  
   updateOrderDictionary();
 }, [OrderRows]);
 
@@ -94,7 +104,7 @@ useEffect(() => {
         <div className="w-full max-w-md">
         {orderEntries.map(([id, parent]) => (
              <div key ={id} className="bg-slate-200 rounded-lg p-5 mb-2.5">
-                <p >{`${parent.name}, ${parent.lname} - ${id}`}</p>
+                <p >{`${parent.name}, ${parent.lname} - ${parent.orderid}`}</p>
                 <button className="text-green-500">{`View Order Info`}</button>
              </div>
                             

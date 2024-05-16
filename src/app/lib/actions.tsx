@@ -18,3 +18,67 @@ export async function insertParent(parentData: Parent) {
              ${parentData.zip})
     `;
 }
+
+export async function selectShoeRows(): Promise <Array<number>> {
+    try { const id = await sql`
+    SELECT shoeid
+    FROM available_shoe;
+    `;
+    
+    const idArray: Array<number> = id.rows.map(row => row.shoeid);
+        
+        return idArray;
+    } catch (err) {
+        console.log('Error =>' + err);
+        throw err;
+    }
+}
+
+export async function selectShoeType(shoeid: number): Promise <number> {
+    try{const type = await sql`
+    SELECT shoetype
+    FROM available_shoe
+    WHERE shoeid = ${shoeid}`
+
+    const typeAsString = type.rows[0].shoetype;
+    const typeAsInt = parseInt(typeAsString, 10);
+    
+    
+    return typeAsInt} catch(err) {
+            console.log('Error =>' + err);
+            throw err;
+        }
+
+}
+
+export async function selectShoeSize(shoeid: number): Promise <number> {
+    try{const type = await sql`
+    SELECT shoesize
+    from available_shoe
+    WHERE shoeid = ${shoeid}`
+
+    const typeAsString = type.rows[0].shoesize;
+    const typeAsInt = parseInt(typeAsString, 10);
+    
+    
+    return typeAsInt} catch(err) {
+            console.log('Error =>' + err);
+            throw err;
+        }
+}
+
+export async function selectShoeName(shoeid: number): Promise <string> {
+    try{const type = await sql`
+    SELECT shoename
+    FROM shoetype
+    WHERE shoetypeid = ${shoeid}`
+
+    const typeAsString = type.rows[0].shoename;
+
+    
+    console.log(typeAsString)
+    return typeAsString} catch(err) {
+            console.log('Error =>' + err);
+            throw err;
+        }
+}

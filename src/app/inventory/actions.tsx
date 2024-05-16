@@ -9,28 +9,14 @@
 import { sql } from '@vercel/postgres';
 
 
-export async function selectChildIDRows(ParentID : number): Promise <Array<number>> {
-    try { const id = await sql`
-    SELECT idchild
-    FROM child
-    WHERE idparent = ${ParentID};
-    `;
-
-    const idArray: Array<number> = id.rows.map(row => row.idchild);
-        console.log(idArray);
-        return idArray;
-    } catch (err) {
-        console.log('Error =>' + err);
-        throw err;
-    }
-}
 
 export async function selectOrderRows(): Promise <Array<number>> {
     try { const id = await sql`
     SELECT orderid
-    FROM orders;
+    FROM orders
+    ORDER BY orderid DESC;
     `;
-
+    
     const idArray: Array<number> = id.rows.map(row => row.orderid);
         console.log(idArray);
         return idArray;
@@ -40,11 +26,13 @@ export async function selectOrderRows(): Promise <Array<number>> {
     }
 }
 export async function selectParentIDfromOrder(OrderID: number): Promise<number> {
+    
     try {const id = await sql`
     SELECT idparent
     FROM orders
     WHERE OrderID = ${OrderID};
     `;
+    
     const idAsString = id.rows[0].idparent;
     const idAsInt = parseInt(idAsString, 10);
     
@@ -62,6 +50,10 @@ export async function selectParentfname(ParentID: number): Promise<string> {
     FROM parent
     WHERE idparent = ${ParentID};
     `;
+
+    if (name.rows.length === 0) {
+        throw new Error(`No parent found with id ${ParentID}`);
+    }
 
     const nameAsString = name.rows[0].fname;
     

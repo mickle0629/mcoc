@@ -1,7 +1,9 @@
+'use client'
 import { Formik, Field, Form, ErrorMessage } from "formik"
 import * as Yup from 'yup'
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
+import {selectShoeName, selectShoeRows, selectShoeSize, selectShoeType} from "../actions"
 
 interface InventorySizes {
     id: string;
@@ -13,7 +15,13 @@ interface InventorySizes {
     orderName: string; // this should pull from the db
     orderNumber: number; // this should also pull from the db
   }
+
+  interface Shoe{
+    name: string; // this should pull from the db
+    size: number; // this should also pull from the db
+  }
   
+
   const InventoryPage: React.FC = () => {
     // Placeholder data for inventory items
     const placeholderInventory: InventorySizes[] = [
@@ -76,6 +84,46 @@ interface InventorySizes {
       { id: '6', type: 'Women ', size: '13' },
       { id: '6', type: 'Women ', size: '14' }
     ];
+    const [ShoeRows, setShoeRows] = useState<Array<number>| null>(null);
+    const [ShoeDictionary, setShoeDictionary] = useState<{ [key: number]: Shoe }>({});
+    const shoeEntries = Object.entries(ShoeDictionary);
+
+    useEffect(() => {
+      async function fetchShoeRows() {
+          try {
+              const result = await selectShoeRows();
+              setShoeRows(result); 
+              console.log(result);
+              
+          } catch (error) {
+              console.error(error);
+          }
+      }
+  
+      //fetchShoeRows();
+  }, []);
+
+  useEffect(() => {
+    async function updateShoeDictionary() {
+        if (ShoeRows !== null) {
+            const newShoeDictionary: { [key: number]: Shoe } = {};
+
+            for (let i = 0; i < ShoeRows.length; i++) {
+                const id = ShoeRows[i];
+                const shoeType = await selectShoeType(id);
+                const name = await selectShoeName(shoeType);
+                const size = await selectShoeSize(id);
+
+                newShoeDictionary[id] = { name, size};
+            }
+
+            setShoeDictionary(newShoeDictionary);
+        }
+    }
+
+    updateShoeDictionary();
+  }, [ShoeRows]);
+  
 
   
     return (
@@ -90,6 +138,14 @@ interface InventorySizes {
               
             </div>
           ))}
+          {/*
+          {shoeEntries.map(([id, shoe]) => (
+            <div key={id} className="bg-slate-200 rounded-lg p-5 mb-2.5 py-20">
+              <p>{`${shoe.name} - Size ${shoe.size}`}</p>
+              <button type="submit" className="px-8 py-2 mb-2 bg-green-500 btn-sm float-right text-white text-md rounded-full">Add To Cart</button>
+              
+            </div>
+          ))}*/}
           <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full"><Link href="/kidInfo">Submit</Link></button>
         </div>
       </div>

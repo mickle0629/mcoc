@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import * as Yup from 'yup';
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import Link from 'next/link'
 
 const MySelect = ({ label, ...props }) => {
     const [field, meta] = useField(props);
@@ -120,7 +120,7 @@ export default function EntryFormKid() {
                     <ErrorMessage name="school"/>
                 </div>
 
-                <button type="submit" className="px-10 py-2 mb-2 bg-green-500 text-white rounded-full">Confirm Information</button>
+                <button type="submit" className="px-10 py-2 mb-2 bg-green-500 text-white rounded-full"><Link href="/orderslips">Confirm Information</Link></button>
             </Form>
         </Formik>
         

@@ -1,6 +1,8 @@
-import React from 'react';
+'use client'
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Link from 'next/link'
+import {selectOrderRows, selectParentIDfromOrder, selectParentfname, selectParentlname} from "./actions";
 
 interface InventoryItem {
   id: string;
@@ -14,8 +16,14 @@ interface RecentOrders{
   orderNumber: number; // this should also pull from the db
 }
 
+interface Parent {
+  name: string | null;
+  lname: string | null;
+}
+
 const InventoryPage: React.FC = () => {
   // Placeholder data for inventory items
+  
   const placeholderInventory: InventoryItem[] = [
     { id: '1', type: 'Toddler Boy', size: '5T', quantity: 8 },
     { id: '2', type: 'Toddler Girl', size: '6T', quantity: 6 },
@@ -24,14 +32,45 @@ const InventoryPage: React.FC = () => {
     { id: '5', type: 'Men', size: '9', quantity: 12 },
     { id: '6', type: 'Women', size: '8', quantity: 15 },
   ];
-  const placeholderInventory2: RecentOrders[] = [
-    { orderName: 'Pete Tucker', orderNumber: 101 },
-    { orderName: 'Kent Jones', orderNumber: 102 },
-    { orderName: 'Qian Mao', orderNumber: 103 },
-    { orderName: 'Scott Griffith', orderNumber: 104 },
-    { orderName: 'Qian', orderNumber: 105 },
-    { orderName: 'Scott', orderNumber: 106 }
-  ];
+ 
+
+  const [OrderRows, setOrderRows] = useState<Array<number>| null>(null);
+  const [OrderDictionary, setOrderDictionary] = useState<{ [key: number]: Child }>({});
+  const orderEntries = Object.entries(OrderDictionary);
+
+  useEffect(() => {
+    async function fetchOrderRows() {
+        try {
+            const result = await selectOrderRows();
+            setOrderRows(result); 
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    fetchOrderRows();
+}, []); 
+
+useEffect(() => {
+  async function updateOrderDictionary() {
+      if (OrderRows !== null) {
+          const newOrderDictionary: { [key: number]: Parent } = {};
+
+          for (let i = 0; i < 7; i++) {
+              const orderID = OrderRows[i]
+              const name = await selectParentfname(orderID);
+              const lname = await selectParentlname(orderID);
+
+
+              newOrderDictionary[orderID] = { name, lname};
+          }
+
+          setOrderDictionary(newOrderDictionary);
+      }
+  }
+
+  updateOrderDictionary();
+}, [OrderRows]);
 
   return (
     <main className="flex bg-white justify-center min-h-screen">
@@ -53,15 +92,12 @@ const InventoryPage: React.FC = () => {
       <div className="bg-white text-black flex flex-col items-right p-7">
       <h1 className="text-3xl p-10 pb-15 pl-16">Recent Orders</h1>
         <div className="w-full max-w-md">
-        {placeholderInventory2.map((item) => (
-            <div
-              key={item.orderName}
-              className="bg-slate-200 rounded-lg p-5 mb-2.5"
-            >
-              <p>{`${item.orderName} - ${item.orderNumber}`}</p>
-              <button className="text-green-500">{`View Order Info`}</button>
-              
-            </div>
+        {orderEntries.map(([id, parent]) => (
+             <div key ={id} className="bg-slate-200 rounded-lg p-5 mb-2.5">
+                <p >{`${parent.name}, ${parent.lname} - ${id}`}</p>
+                <button className="text-green-500">{`View Order Info`}</button>
+             </div>
+                            
           ))}
           <br></br><br></br><button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12"><Link href="/orders">View All Orders</Link></button>
         </div>

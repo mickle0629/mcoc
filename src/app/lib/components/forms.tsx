@@ -10,6 +10,21 @@ import * as Yup from 'yup';
 
 import { insertParent } from "../actions";
 
+function equalTo(ref, msg) {
+	return this.test({
+		name: 'equalTo',
+		exclusive: false,
+    message: msg || '${path} must be the same as ${reference}',
+		params: {
+			reference: ref.path
+		},
+		test: function(value) {
+      return value === this.resolve(ref) 
+		}
+	})
+};
+Yup.addMethod(Yup.string, 'equalTo', equalTo);
+
 export default function EntryForm() {
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
     const router = useRouter();
@@ -38,7 +53,7 @@ export default function EntryForm() {
                     .required('Required!'),
                 confirmEmail: Yup.string()
                     .email('Invalid email address!')
-                    .required('Required!'),
+                    .equalTo(Yup.ref("email"), "Emails must match."),
                 //confirmEmail: Yup.string()
                    // .email('Invalid email address')
                     //.matches(,'Must match the first email')
@@ -73,7 +88,7 @@ export default function EntryForm() {
                 
                 {/* Individual fields here. Each field has a wrapping div for styling purposes */}
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="firstName" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="First Name" />
+                    <Field name="firstName" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="First Name"/>
                     <ErrorMessage name="firstName" className="" />
                 </div>
                 
@@ -88,7 +103,7 @@ export default function EntryForm() {
                 </div>
 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="confirmEmail" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Confirm Email" />
+                    <Field name="confirmEmail" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Confirm Email"/>
                     <ErrorMessage name="confirmEmail" />
                 </div>
                 
@@ -102,7 +117,7 @@ export default function EntryForm() {
                     <ErrorMessage name="zip"/>
                 </div>
 
-                <button type="submit" className="px-10 py-2 mb-2 bg-green-500 text-white rounded-full">Confirm Information</button>
+                <button type="submit"  className="px-10 py-2 mb-2 bg-green-500 text-white rounded-full" >Confirm Information </button>
             </Form>
         </Formik>
     );

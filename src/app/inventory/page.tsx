@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Link from 'next/link'
 import {selectOrderRows, selectParentIDfromOrder, selectParentfname, selectParentlname} from "./actions";
-
+import { selectInventoryNum, selectShoeName, selectShoeRows, selectShoeSize, selectShoeType } from "./actions";
 
 interface InventoryItem {
   id: string;
@@ -22,6 +22,19 @@ interface Parent {
   lname: string | null;
   orderid: number | null;
 }
+
+interface InventorySizes {
+  id: string;
+  type: string;
+  size: string;
+  inventory: number;
+}
+
+interface Shoe {
+  name: string; // this should pull from the db
+  size: number; // this should also pull from the db
+}
+
 
 const InventoryPage: React.FC = () => {
   // Placeholder data for inventory items
@@ -87,7 +100,7 @@ useEffect(() => {
       <div className="bg-white text-black flex flex-col items-left p-7 ">
         <h1 className="text-3xl p-10 pb-15 pl-16">Current Inventory</h1>
         <div className="w-full max-w-md">
-          {placeholderInventory.map((item) => (
+          {placeholderInventory.slice(0,6).map((item) => (
             <div key={item.id} className="bg-slate-200 rounded-lg p-5 mb-2.5">
               <p>{`${item.type} - Size ${item.size}`}</p>
               <p>{`Quantity: ${item.quantity}`}</p>

@@ -146,7 +146,7 @@ interface InventorySizes {
               
             </div>
           ))}*/}
-          <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full"><Link href="/kidInfo">Submit</Link></button>
+          <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full"><Link href="/kidInfo">Order Checkout</Link></button>
         </div>
       </div>
       </main>

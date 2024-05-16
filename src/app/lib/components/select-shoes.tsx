@@ -42,7 +42,7 @@ interface InventorySizes {
       { id: '2', type: 'Toddler Girl ', size: '9T' },
       { id: '2', type: 'Toddler Girl ', size: '10T' },
       { id: '2', type: 'Toddler Girl ', size: '11T' },
-      { id: '2', type: 'Toddler Girl ', size: '2T' },
+      { id: '2', type: 'Toddler Girl ', size: '12T' },
       { id: '2', type: 'Toddler Girl ', size: '13T'},
 
       { id: '3', type: 'Boy ', size: '1'},

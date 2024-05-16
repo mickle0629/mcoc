@@ -84,7 +84,7 @@ export default function EntryForm() {
         >
             <Form className="flex flex-col justify-center text-left gap-5 w-72 items-center mx-auto my-40">
                 {/* Form Title */}
-                <p className="text-black text-2xl text-center">Information Entry</p>
+                <p className="text-black text-2xl text-center">Parent Information Entry</p>
                 
                 {/* Individual fields here. Each field has a wrapping div for styling purposes */}
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">

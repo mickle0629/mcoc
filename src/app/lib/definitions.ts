@@ -11,3 +11,19 @@ export type Parent = {
     phoneNumber: string;
     zip: string
 }
+/*
+export type Child = {
+    firstName: string;
+    lastName: string;
+    age: string;
+    grade: string;
+    schoolattending: string;
+    shoesize:string;
+    shoestype:string;
+}
+
+export type Order = {
+    shoeid: number;
+    idchild: number;
+    idparent: number;
+}*/

@@ -7,7 +7,8 @@
 
 import { sql } from '@vercel/postgres';
 import { Parent } from './definitions';
-
+/*import { Order } from '../inventory/definitions';
+*/
 export async function insertParent(parentData: Parent) {
     await sql`
         INSERT INTO parent(Fname, Lname, Email, Phone, Zip) VALUES
@@ -85,6 +86,23 @@ export async function selectShoeName(shoeid: number): Promise <string> {
         }
 }
 
+export async function SelectInventoryNum(shoeid: number): Promise <number> {
+    try{const inventory = await sql`
+    SELECT inventory
+    FROM available_shoe
+    WHERE shoeid = ${shoeid}`
+
+    const typeAsString = inventory.rows[0].inventory;
+    const typeAsInt = parseInt(typeAsString, 10);
+
+    
+    return typeAsInt} catch(err) {
+            console.log('Error =>' + err);
+            throw err;
+        }
+}
+
+
 
 export async function selectInventoryNum(shoeid: number): Promise <number> {
     try{const inventory = await sql`
@@ -102,3 +120,13 @@ export async function selectInventoryNum(shoeid: number): Promise <number> {
         }
 }
 
+
+/*
+export async function insertShoeOrder(orderData: Order) {
+    await sql`
+        INSERT INTO orders(shoeid, idchild, idparent) VALUES
+            (${orderData.shoeid}, 
+             ${orderData.idchild}, 
+             ${orderData.idparent}
+            )`;
+}Seth's Working on This*/

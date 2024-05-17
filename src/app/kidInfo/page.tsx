@@ -16,6 +16,5 @@ export default function Home() {
         <p className="text-black text-center pt-3">Copyright 2024</p>
       </div>
     </main>
-    
   );
 }

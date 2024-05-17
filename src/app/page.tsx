@@ -28,6 +28,9 @@ export default function Home() {
     const kidurl = "/kidInfo/?id=" + idFromURL;
   return (
     <main className="flex flex-col min-h-screen">
+       <div className="absolute top-0 right-0 m-4">
+        <Link href="/admin"><button className="px-4 py-2 bg-green-500 text-white rounded-full hover:bg-sky-700 mt-10">Admin</button></Link>
+      </div>
     <div className="w-auto content-center flex flex-col items-center p-10 h-screen">
       <Link href="/parent-information"><button className="mt-3 w-80 px-4 py-2 mb-2 bg-green-500 text-white rounded-full hover:bg-sky-700">Add Gaurdian</button></Link>
         <DisplayParent parentId = {idNumber}></DisplayParent>

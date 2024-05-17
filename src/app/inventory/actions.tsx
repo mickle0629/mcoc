@@ -12,11 +12,11 @@ export async function selectShoeRows(): Promise <Array<number>> {
     try { const id = await sql`
     SELECT shoeid, shoetype
     FROM available_shoe
-    where inventory > 0;
+    WHERE inventory > 0;
     `;
     
     const idArray: Array<number> = id.rows.map(row => row.shoeid);
-        console.log(idArray)
+
         
         return idArray;
     } catch (err) {
@@ -67,7 +67,7 @@ export async function selectShoeName(shoeid: number): Promise <string> {
     const typeAsString = type.rows[0].shoename;
 
     
-    console.log(typeAsString)
+    
     return typeAsString} catch(err) {
             console.log('Error =>' + err);
             throw err;
@@ -85,7 +85,7 @@ export async function selectInventoryNum(shoeid: number): Promise <number> {
     const typeAsInt = parseInt(typeAsString, 10);
 
     
-    console.log(typeAsInt)
+    
     return typeAsInt} catch(err) {
             console.log('Error =>' + err);
             throw err;
@@ -101,7 +101,7 @@ export async function selectOrderRows(): Promise <Array<number>> {
     `;
     
     const idArray: Array<number> = id.rows.map(row => row.orderid);
-        console.log(idArray);
+        
         return idArray;
     } catch (err) {
         console.log('Error =>' + err);
@@ -119,7 +119,7 @@ export async function selectParentIDfromOrder(OrderID: number): Promise<number> 
     const idAsString = id.rows[0].idparent;
     const idAsInt = parseInt(idAsString, 10);
     
-    //console.log(idAsInt)
+  
     return idAsInt} catch(err) {
             console.log('Error =>' + err);
             throw err;
@@ -140,7 +140,7 @@ export async function selectParentfname(ParentID: number): Promise<string> {
 
     const nameAsString = name.rows[0].fname;
     
-    console.log(nameAsString);
+    
     return nameAsString} catch(err) {
             console.log('Error =>' + err);
             throw err;

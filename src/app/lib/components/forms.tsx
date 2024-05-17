@@ -9,7 +9,14 @@ import { useRouter } from "next/navigation";
 import * as Yup from 'yup';
 
 
-import { insertParent } from "../actions";
+import { insertParent, GetParentName, FindParent } from "../actions";
+import { useState } from "react";
+import { unstable_cache } from "next/cache";
+
+function reload()
+{
+    location.reload()
+}
 
 function equalTo(ref, msg) {
 	return this.test({
@@ -26,10 +33,9 @@ function equalTo(ref, msg) {
 };
 Yup.addMethod(Yup.string, 'equalTo', equalTo);
 
-export default function EntryForm() {
+export default async function EntryForm() {
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
     const router = useRouter();
-    //const checkEmail = '';
 
     return (
         <Formik
@@ -70,19 +76,36 @@ export default function EntryForm() {
                     .required('Required')
             })}
             //handles submit events with a function that parses the submitted values into JSON formatted string and displays it in alert() after 400ms.
-            onSubmit={ (values, { setSubmitting } ) => {
+            onSubmit={ async (values, { setSubmitting } ) => {
                 //TODO: Get rid of setTimeout
                 //TODO: Code for updating database entries here
                 insertParent(values);
                 setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    alert(typeof values.zip);
+                    //alert(JSON.stringify(values, null, 2));
+                    //alert(typeof values.zip);
                     setSubmitting(false);
                 }, 400)
+                let id = -1;
+                try
+                {
+                    id = await FindParent(values);
+                }
+                catch(err)
+                {
+                    console.log(err);
+                    throw(err);
+                }
+                
+                let url:string = "/?id=";
+                url = url + id.toString();
+                //router.push(url)
+                setTimeout(reload,250);
+                router.replace(url).then(() => router.reload());
                 //Changes current path to the shoe-browsing section
+                
                 router.push('/');
             }}
-        >
+        >                
             <Form className="flex flex-col bg-white border-2 border-black rounded-md justify-center text-left gap-5 w-72 items-center mx-auto my-20">
                 {/* Form Title */}
                 <p className="text-black text-2xl text-center mt-6">Parent Information Entry</p>
@@ -121,5 +144,6 @@ export default function EntryForm() {
                 <button type="submit"  className="px-10 py-2 mb-8 bg-green-500 text-white rounded-full hover:bg-sky-700" >Confirm Information </button>
             </Form>
         </Formik>
+        
     );
 }

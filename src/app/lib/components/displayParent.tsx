@@ -11,30 +11,22 @@ interface Parent {
 }
 
 
-const OrderSlips: React.FC = () => {
+export function DisplayParent(props)
+ {
+    if(props.parentId === -1 || props.parentId === undefined)
+        {
+            return <></>
+        }
     // Placeholder data for inventory items
     const placeholderParent: Parent[] = [
         { name: 'Steve', lName: 'Johnson', email: 'sjohnson24@my.whitworth.edu', phoneNum: "5096718282", orderID: 1 }
     ];
 
-    const [pid, setPid] = useState<number | null>(null); 
+    const pid = props.parentId;
     const [fname, setFname] = useState<string | null>(null); 
     const [lname, setlname] = useState<string | null>(null); 
     const [email, setEmail] = useState<string | null>(null); 
     const [number, setNumber] = useState<string | null>(null); 
-
-    useEffect(() => {
-        async function fetchParentID() {
-            try {
-                const result = await selectParentIDfromOrder(3);
-                setPid(result); 
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-        fetchParentID();
-    }, []); 
 
     useEffect(() => {
         async function fetchParentName(pid: number) {
@@ -86,7 +78,7 @@ const OrderSlips: React.FC = () => {
     }, [pid]); 
 
     return (
-        <main className="flex flex-col bg-[url('./MCOCBackground.jpeg')] min-h-screen">
+        <main className="flex flex-col bg-white">
             <div
                 style={{
                     backgroundColor: 'white',
@@ -97,7 +89,6 @@ const OrderSlips: React.FC = () => {
                     padding: '20px',
                 }}
             >
-                <h1 style={{ fontSize: '200%', padding: '10px', paddingBottom: '15px' }}>Order Slip</h1>
 
                 <div style={{ width: '100%', maxWidth: '400px' }}>
                     {placeholderParent.map((item) => (
@@ -112,14 +103,6 @@ const OrderSlips: React.FC = () => {
                         >
                             <p>{`Name: ${lname}, ${fname}`}</p>
                             <p>{`Email: ${email}`}</p>
-                            <p>{`Phone Number: ${number}`}</p>
-                            <br></br>
-                            <p>{`Order Information:`}</p>
-                            
-                            
-                            <br></br>
-                            <p>{`Order Summary:`}</p>
-                            <p>{`Child`}</p>
                             
                         </div>   
                     ))}
@@ -129,4 +112,4 @@ const OrderSlips: React.FC = () => {
     );
 };
 
-export default OrderSlips;
+

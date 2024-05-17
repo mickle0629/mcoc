@@ -36,11 +36,9 @@ const ConfirmationForm = () => {
                 <span className="text-black ml-2">I understand that inventory is limited and I may not get the size shoes I have registered for.</span>
               </label>
             </div>
-<<<<<<< HEAD
+
             <Link href="/submitted"><button type="submit" className="px-10 py-6 mt-16 bg-green-500 text-white text-2xl rounded-full text-nowrap grow-0 ">Place Order</button></Link>
-=======
             <button type="submit" className="px-10 py-6 mt-16 bg-green-500 text-white text-2xl rounded-full text-nowrap grow-0  hover:bg-sky-700">Place Order</button>
->>>>>>> 952e1483cb2b2100674113ad2553a47c1889a810
           </div>
         </Form>
       )}

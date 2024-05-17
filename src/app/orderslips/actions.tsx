@@ -9,7 +9,7 @@
 import { sql } from '@vercel/postgres';
 
 export async function selectParentIDfromOrder(OrderID: number): Promise<number> {
-    console.log(OrderID);
+    
     try {const id = await sql`
     SELECT idparent
     FROM orders
@@ -18,7 +18,7 @@ export async function selectParentIDfromOrder(OrderID: number): Promise<number> 
     const idAsString = id.rows[0].idparent;
     const idAsInt = parseInt(idAsString, 10);
     
-    //console.log(idAsInt)
+    
     return idAsInt} catch(err) {
             console.log('Error =>' + err);
             throw err;
@@ -95,7 +95,7 @@ export async function selectChildIDRows(ParentID : number): Promise <Array<numbe
     `;
 
     const idArray: Array<number> = id.rows.map(row => row.idchild);
-        console.log(idArray);
+        console.log(idArray)
         return idArray;
     } catch (err) {
         console.log('Error =>' + err);
@@ -109,8 +109,9 @@ export async function selectChildname(ChildID : number) : Promise <string> {
     FROM child
     WHERE idchild = ${ChildID}`
     
-    const nameAsString = name.rows[0].fname
     
+    const nameAsString = name.rows[0].fname
+    console.log(nameAsString);
     return nameAsString} catch(err) {
         console.log('Error =>' + err);
         throw err;
@@ -131,16 +132,16 @@ export async function selectChildlname(ChildID : number) : Promise <string> {
     }
 }
 
-export async function selectChildShoeType(ChildID: number): Promise <number> {
+export async function selectChildShoeType(shoeid: number): Promise <number> {
     try{const type = await sql`
     SELECT shoetype
-    FROM child
-    WHERE idchild = ${ChildID}`
+    FROM available_shoe
+    WHERE shoeid = ${shoeid}`
 
-    const typeAsString = type.rows[0].idparent;
+    const typeAsString = type.rows[0].shoetype;
     const typeAsInt = parseInt(typeAsString, 10);
     
-    console.log(typeAsInt)
+    
     return typeAsInt} catch(err) {
             console.log('Error =>' + err);
             throw err;
@@ -155,23 +156,73 @@ export async function selectShoeName(ShoeTypeID: number): Promise <string> {
     WHERE shoetypeid = ${ShoeTypeID}`
 
     const nameAsString = shoeName.rows[0].shoename;
-    console.log(nameAsString)
-
+    
+    console.log(nameAsString);
     return nameAsString} catch(err) {
         console.log('Error =>' + err);
         throw err;
     }
 }
 
-export async function selectShoeSize(ChildID: number): Promise <string> {
+export async function selectShoeSize(shoeID: number): Promise <string> {
     try{const shoesize = await sql`
     SELECT shoesize
-    FROM child
-    WHERE idchild = ${ChildID}` 
+    FROM available_shoe
+    WHERE shoeid = ${shoeID}` 
     const sizeAsString = shoesize.rows[0].shoesize;
+    console.log(sizeAsString)
     return sizeAsString} catch(err){
         console.log('Error =>' + err);
         throw err;
     }
 }
 
+export async function selectShoeID(ChildID: number): Promise <number> {
+    try{const shoeid = await sql`
+    SELECT shoeid
+    FROM child
+    WHERE idchild = ${ChildID}` 
+    const idAsString = shoeid.rows[0].shoeid;
+    const idAsInt = parseInt(idAsString, 10);
+    
+    console.log(idAsInt);
+    return idAsInt} catch(err){
+        console.log('Error =>' + err);
+        throw err;
+    }
+}
+
+export async function selectOrderRows(): Promise <Array<number>> {
+    try { const id = await sql`
+    SELECT orderid
+    FROM orders
+    ORDER BY orderid DESC;
+    `;
+    
+    const idArray: Array<number> = id.rows.map(row => row.orderid);
+       
+        return idArray;
+    } catch (err) {
+        console.log('Error =>' + err);
+        throw err;
+    }
+}
+
+export async function selectChildIDfromParentID(parentid: number): Promise<number> {
+    
+    try {const id = await sql`
+    SELECT idchild
+    FROM child
+    WHERE idparent = ${parentid};
+    `;
+    const idAsString = id.rows[0].idchild;
+    const idAsInt = parseInt(idAsString, 10);
+    
+    
+    console.log(idAsInt);
+    return idAsInt} catch(err) {
+            console.log('Error =>' + err);
+            throw err;
+        }
+    
+    }

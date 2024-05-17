@@ -8,7 +8,8 @@ export default function Home() {
     <div className="w-auto content-center flex flex-col items-center p-10 h-screen">
     <Link href="/fullinventory"><button className="mt-3 w-80 px-4 py-2 mb-2 bg-green-500 text-white rounded-full hover:bg-sky-700">Inventory</button></Link>
     <Link href="/addInventory"><button className="mt-3 w-80 px-4 py-2 mb-2 bg-green-500 text-white rounded-full hover:bg-sky-700">Add Inventory</button></Link>
-      <Link href="/browse"><button className="mt-3 w-80 px-4 py-2 mb-2 bg-green-500 text-white rounded-full hover:bg-sky-700">Orders</button></Link>
+      <Link href="/orders"><button className="mt-3 w-80 px-4 py-2 mb-2 bg-green-500 text-white rounded-full hover:bg-sky-700">Orders</button></Link>
+      <Link href="/orderslips"><button className="mt-3 w-80 px-4 py-2 mb-2 bg-green-500 text-white rounded-full hover:bg-sky-700">Order Slips</button></Link>
     </div>
 
     {/* footer */}

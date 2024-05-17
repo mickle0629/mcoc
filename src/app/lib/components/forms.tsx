@@ -13,7 +13,10 @@ import { insertParent, GetParentName, FindParent } from "../actions";
 import { useState } from "react";
 import { unstable_cache } from "next/cache";
 
-
+function reload()
+{
+    location.reload()
+}
 
 function equalTo(ref, msg) {
 	return this.test({
@@ -78,8 +81,8 @@ export default async function EntryForm() {
                 //TODO: Code for updating database entries here
                 insertParent(values);
                 setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    alert(typeof values.zip);
+                    //alert(JSON.stringify(values, null, 2));
+                    //alert(typeof values.zip);
                     setSubmitting(false);
                 }, 400)
                 let id = -1;
@@ -96,8 +99,8 @@ export default async function EntryForm() {
                 let url:string = "/?id=";
                 url = url + id.toString();
                 //router.push(url)
+                setTimeout(reload,250);
                 router.replace(url).then(() => router.reload());
-                
                 //Changes current path to the shoe-browsing section
                 
                 router.push('/');

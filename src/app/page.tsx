@@ -4,15 +4,13 @@
 'use client'
 import Link from 'next/link'
 import { DisplayParent } from './lib/components/displayParent'
-import { Route, Router, createBrowserRouter, createRoutesFromElements, useLocation } from 'react-router-dom'
-import { TIMEOUT } from 'dns'
 
 function reload()
 {
     location.reload()
 }
 export default function Home() {
-    
+
     const urlParams = new URLSearchParams(window.location.search);
     const idFromURL: string | null = urlParams.get('id');
     console.log(idFromURL);
@@ -23,7 +21,7 @@ export default function Home() {
         }
         else{
             console.log("No param in url");
-            setTimeout(reload,100);
+            //setTimeout(reload,500);
         }
 
   return (

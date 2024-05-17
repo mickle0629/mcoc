@@ -20,8 +20,9 @@ export default function RootLayout({
       <body className="bg-cover h-screen bg-[url('.//MCOCBackground.jpeg')] min-h-72" >
           
         {/* Top bar */}
-        <div className="bg-green-500 min-w-full h-[35px]">
-          <h1 className="pt-1 flex justify-center text-white">Mission Community Outreach Center: School Shoes for Kids</h1>
+        <div className="bg-green-500 min-w-full h-12">
+          <h1 className="pt-2 flex justify-center align-center text-white">Mission Community Outreach Center: School Shoes for Kids</h1>
+          
         </div>
         {children}
         </body>

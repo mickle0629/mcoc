@@ -10,6 +10,7 @@ import { Parent } from './definitions';
 /*import { Order } from '../inventory/definitions';
 */
 export async function insertParent(parentData: Parent) {
+
     await sql`
         INSERT INTO parent(Fname, Lname, Email, Phone, Zip) VALUES
             (${parentData.firstName}, 
@@ -18,6 +19,20 @@ export async function insertParent(parentData: Parent) {
              ${parentData.phoneNumber}, 
              ${parentData.zip})
     `;
+}
+
+export async function FindParent(parent:Parent): Promise <number>
+{
+    try {const id = await sql`
+    SELECT idparent
+    FROM parent
+    WHERE email = ${parent.email}`
+
+    const ID = id.rows[0].idparent
+    return ID} catch(err) {
+            console.log('Error =>' + err);
+            throw err;
+        }
 }
 
 export async function selectShoeRows(): Promise <Array<number>> {
@@ -77,6 +92,7 @@ export async function selectShoeName(shoeid: number): Promise <string> {
     WHERE shoetypeid = ${shoeid}`
 
     const typeAsString = type.rows[0].shoename;
+    console.log(typeAsString);
 
     
 
@@ -121,6 +137,23 @@ export async function selectInventoryNum(shoeid: number): Promise <number> {
 }
 
 
+
+export async function GetParentName(parentId:number): Promise <string>
+{
+    try{const type = await sql`
+    SELECT fname , lname
+    FROM parent
+    WHERE idparent = ${parentId}`
+
+    const Name:string  = type.rows[0].fname + " " + type.rows[0].lname;
+    console.log(Name);
+    return Name}
+    catch(err)
+    {
+        console.log('Error =>' + err);
+        throw err;
+    }
+}
 /*
 export async function insertShoeOrder(orderData: Order) {
     await sql`

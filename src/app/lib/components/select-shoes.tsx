@@ -16,6 +16,21 @@ interface Shoe {
 }
 
 const InventoryPage: React.FC = () => {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const idFromURL: string | null = urlParams.get('id');
+    console.log(idFromURL);
+    let idNumber:number = -1;
+    if(idFromURL !== null)
+        {
+            idNumber = parseInt(idFromURL, 10);
+            console.log(idNumber);
+        }
+        else{
+            console.log("No param in url");
+            
+        }
+        const homeurl = "/?id=" + idFromURL;
     const [placeholderInventory, setPlaceholderInventory] = useState<InventorySizes[]>([
         { id: '1', type: 'Toddler Girls\' Shoes ', size: '8T'},
         { id: '2', type: 'Toddler Girls\' Shoes ', size: '9T'},
@@ -116,7 +131,7 @@ const InventoryPage: React.FC = () => {
 
               <p>{`${item.type} - Size ${item.size}`}</p>
 
-              <Link href="/"><button type="submit" className="px-8 py-2 mb-2 bg-green-500 btn-sm float-right text-white text-md rounded-full">Assign to Child</button></Link>              
+              <Link href={homeurl}><button type="submit" className="px-8 py-2 mb-2 bg-green-500 btn-sm float-right text-white text-md rounded-full">Assign to Child</button></Link>              
             </div>
           ))}
         </div>

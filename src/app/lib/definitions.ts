@@ -11,7 +11,7 @@ export type Parent = {
     phoneNumber: string;
     zip: string
 }
-/*
+
 export type Child = {
     firstName: string;
     lastName: string;
@@ -21,7 +21,7 @@ export type Child = {
     shoesize:string;
     shoestype:string;
 }
-
+/*
 export type Order = {
     shoeid: number;
     idchild: number;

@@ -99,7 +99,7 @@ export default async function EntryForm() {
                 let url:string = "/?id=";
                 url = url + id.toString();
                 //router.push(url)
-                setTimeout(reload,250);
+                setTimeout(reload,500);
                 router.replace(url).then(() => router.reload());
                 //Changes current path to the shoe-browsing section
                 

@@ -8,8 +8,12 @@ import { Formik, Field, Form, ErrorMessage, useField } from "formik";
 import { useRouter } from "next/navigation";
 import * as Yup from 'yup';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Link from 'next/link'
+
+
+function reload()
+{
+    location.reload()
+}
 
 const MySelect = ({ label, ...props }) => {
     const [field, meta] = useField(props);
@@ -27,6 +31,20 @@ const MySelect = ({ label, ...props }) => {
 export default function EntryFormKid() {
     const router = useRouter();
     const gradeLims = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const idFromURL: string | null = urlParams.get('id');
+    console.log(idFromURL);
+    let idNumber:number = -1;
+    if(idFromURL !== null)
+        {
+            idNumber = parseInt(idFromURL, 10);
+            console.log(idNumber);
+        }
+        else{
+            console.log("No param in url");
+            
+        }
 
     return (
         <Formik
@@ -59,11 +77,14 @@ export default function EntryFormKid() {
                 //TODO: Get rid of setTimeout
                 //TODO: Code for updating database entries here
                 setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
+                    //alert(JSON.stringify(values, null, 2));
                     setSubmitting(false);
                 }, 400)
                 //Changes current path to the shoe-browsing section
-                router.push('/browse')
+                let url = "/browse/?id=" + idFromURL;
+                console.log(url);
+                //setTimeout(reload,500);
+                router.replace(url).then(() => router.reload());
             }}
         >
             <Form className="flex flex-col justify-center text-left gap-5 w-72 items-center mx-auto my-40">

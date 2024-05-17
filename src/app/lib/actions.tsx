@@ -21,6 +21,8 @@ export async function insertParent(parentData: Parent) {
     `;
 }
 
+
+
 export async function FindParent(parent:Parent): Promise <number>
 {
     try {const id = await sql`

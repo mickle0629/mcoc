@@ -1,7 +1,11 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import { selectParentIDfromOrder, selectParentNumber } from '@/app/orderslips/actions';
-import{selectChildIDRows, selectChildname, selectChildlname, selectShoeSize, selectChildShoeType, selectShoeName} from"@/app/orderslips/actions"
+import { selectChildShoeType, selectParentIDfromOrder, selectShoeName, selectShoeSize } from '@/app/orderslips/actions';
+import{selectChildIDRows, selectChildname, selectChildlname } from"@/app/orderslips/actions"
+
+interface Parent {
+    orderID : number;
+}
 
 interface Child {
     name: string | null;
@@ -12,7 +16,16 @@ interface Child {
 
 const OrderSlips: React.FC = () => {
     // Placeholder data for inventory items
-    
+    const placeholderChild: Child[] = [
+        {
+            name: 'Stevey', lname: 'Johnson',
+            shoeType: 'Toddler Boys',
+            size: '6'
+        }
+    ];
+    const placeholderParent: Parent[] = [
+        { orderID: 1 }
+    ];
     
     const [pid, setPid] = useState<number | null>(null); 
     const [cidRows, setChildIDRows] = useState<Array<number>| null>(null); 
@@ -61,7 +74,7 @@ const OrderSlips: React.FC = () => {
                     const type = await selectChildShoeType(cid);
                     const shoeType = await selectShoeName(type);
 
-                    newChildDictionary[cid] = { name, lname, shoeType ,size};
+                    newChildDictionary[cid] = { name, lname, shoeType , size};
                 }
 
                 setChildDictionary(newChildDictionary);

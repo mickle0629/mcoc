@@ -111,7 +111,7 @@ const InventoryPage: React.FC = () => {
           {placeholderInventory.map((item) => (
             <div key={item.id} className="bg-slate-200 rounded-lg p-5 mb-2.5 py-20">
               <p>{`${item.type} - Size ${item.size}`}</p>
-              <button type="submit" className="px-8 py-2 mb-2 bg-green-500 btn-sm float-right text-white text-md rounded-full">Add To Cart</button>
+              <button type="submit" className="px-8 py-2 mb-2 bg-green-500 btn-sm float-right text-white text-md rounded-full">Assign to Child</button>
               
             </div>
           ))}

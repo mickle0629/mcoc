@@ -22,11 +22,13 @@ export async function insertParent(parentData: Parent) {
 
 export async function selectShoeRows(): Promise <Array<number>> {
     try { const id = await sql`
-    SELECT shoeid
-    FROM available_shoe;
+    SELECT shoeid, shoetype
+    FROM available_shoe
+    where inventory > 0;
     `;
     
     const idArray: Array<number> = id.rows.map(row => row.shoeid);
+
         
         return idArray;
     } catch (err) {
@@ -77,14 +79,49 @@ export async function selectShoeName(shoeid: number): Promise <string> {
     const typeAsString = type.rows[0].shoename;
 
     
-    console.log(typeAsString)
+
     return typeAsString} catch(err) {
             console.log('Error =>' + err);
             throw err;
         }
 }
 
+export async function SelectInventoryNum(shoeid: number): Promise <number> {
+    try{const inventory = await sql`
+    SELECT inventory
+    FROM available_shoe
+    WHERE shoeid = ${shoeid}`
 
+    const typeAsString = inventory.rows[0].inventory;
+    const typeAsInt = parseInt(typeAsString, 10);
+
+    
+    return typeAsInt} catch(err) {
+            console.log('Error =>' + err);
+            throw err;
+        }
+}
+
+
+
+export async function selectInventoryNum(shoeid: number): Promise <number> {
+    try{const inventory = await sql`
+    SELECT inventory
+    FROM available_shoe
+    WHERE shoeid = ${shoeid}`
+
+    const typeAsString = inventory.rows[0].inventory;
+    const typeAsInt = parseInt(typeAsString, 10);
+
+    
+    return typeAsInt} catch(err) {
+            console.log('Error =>' + err);
+            throw err;
+        }
+}
+
+
+/*
 export async function insertShoeOrder(orderData: Order) {
     await sql`
         INSERT INTO orders(shoeid, idchild, idparent) VALUES
@@ -92,4 +129,4 @@ export async function insertShoeOrder(orderData: Order) {
              ${orderData.idchild}, 
              ${orderData.idparent}
             )`;
-}
+}Seth's Working on This*/

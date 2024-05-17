@@ -120,16 +120,23 @@ const InventoryPage: React.FC = () => {
     return (
       <main className="flex bg-white justify-center min-h-screen">
       <div className="bg-white text-black flex flex-col items-left p-7">
-        <h1 className="text-3xl p-10 pb-15 pl-16">Current Inventory</h1>
+        <h1 className="text-3xl p-10 pb-15 pl-16">Full Inventory</h1>
         <div className="w-full max-w-md">
           {placeholderInventory.map((item) => (
             <div key={item.id} className="bg-slate-200 rounded-lg p-5 mb-2.5 py-20">
               <p>{`${item.type} - Size ${item.size}`}</p>
               <p>{`Inventory - ${item.inventory}` }</p>
-              <button type="submit" className="px-8 py-2 mb-2 bg-green-500 btn-sm float-right text-white text-md rounded-full">Add To Cart</button>
               
             </div>
           ))}
+          {/*
+          {shoeEntries.map(([id, shoe]) => (
+            <div key={id} className="bg-slate-200 rounded-lg p-5 mb-2.5 py-20">
+              <p>{`${shoe.name} - Size ${shoe.size}`}</p>
+              <button type="submit" className="px-8 py-2 mb-2 bg-green-500 btn-sm float-right text-white text-md rounded-full">Add To Cart</button>
+              
+            </div>
+          ))}*/}
           <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full"><Link href="/kidInfo">Submit</Link></button>
         </div>
       </div>

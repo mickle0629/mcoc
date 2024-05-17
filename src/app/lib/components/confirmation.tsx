@@ -39,7 +39,7 @@ const ConfirmationForm = () => {
               <span className="text-black ml-2">I understand that inventory is limited and I may not get the size shoes I have registered for.</span>
             </label>
           </div>
-          <button type="submit" className="max-w-32 px-2 py-1 mb-2 bg-green-500 text-white rounded-full text-nowrap grow-0">Place Order</button>
+          <button type="submit" className="max-w-32 px-2 py-1 mb-2 bg-green-500 text-white rounded-full text-nowrap grow-0 hover:bg-sky-700">Place Order</button>
         </Form>
       )}
     </Formik>

@@ -1,5 +1,6 @@
 import { Formik, Field, Form, ErrorMessage } from "formik"
 import * as Yup from 'yup'
+import background from "./image\MCOCBackground.jpeg";
 
 interface InventorySizes {
     id: string;
@@ -76,7 +77,7 @@ interface InventorySizes {
 
   
     return (
-      <main className="flex bg-white justify-center min-h-screen">
+      <main className="flex bg--[url('./MCOCBackground.jpeg')] justify-center min-h-screen">
       <div className="bg-white text-black flex flex-col items-left p-7">
         <h1 className="text-3xl p-10 pb-15 pl-16">Current Inventory</h1>
         <div className="w-full max-w-md">

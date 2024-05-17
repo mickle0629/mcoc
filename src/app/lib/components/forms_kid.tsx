@@ -25,7 +25,6 @@ const MySelect = ({ label, ...props }) => {
   };
 
 export default function EntryFormKid() {
-    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
     const router = useRouter();
     const gradeLims = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -76,23 +75,23 @@ export default function EntryFormKid() {
                 
                 {/* Individual fields here. Each field has a wrapping div for styling purposes */}
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="kidFirstName" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="First Name" />
-                    <ErrorMessage name="KidFirstName" className="" />
+                    <Field name="firstName" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12 hover:bg-sky-700" placeholder="First Name" />
+                    <ErrorMessage name="firstName" className="" />
                 </div>
                 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="kidLastName" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Last Name" />
-                    <ErrorMessage name="KidLastName" />
+                    <Field name="lastName" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Last Name" />
+                    <ErrorMessage name="lastName" />
                 </div>
 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="kidAge" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Age" />
-                    <ErrorMessage name="Kid's Age" />
+                    <Field name="age" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Age" />
+                    <ErrorMessage name="age" />
                 </div>
 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
                     <div className="form-field indent-4 min-h-12 w-[13.5rem] border-2 border-gray-500 rounded-lg">
-                        <Field name="kidGrade" as="select" className="pt-3 block w-full py-2 px-3 border-0 rounded-lg text-gray-400">
+                        <Field name="gradeOfSchool" as="select" className="pt-3 block w-full py-2 px-3 border-0 rounded-lg text-gray-400">
                             <option value="">Grade in School</option>
                             <optgroup label="PreK & Kinder" className="text-black">
                                 <option value="preschool">Preschool</option>
@@ -112,15 +111,15 @@ export default function EntryFormKid() {
                             </optgroup>
                         </Field>
                     </div>
-                    <ErrorMessage name="kidGrade" />
+                    <ErrorMessage name="gradeOfSchool" />
                 </div>
 
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="kidSchool" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="School Attending" />
-                    <ErrorMessage name="school"/>
+                    <Field name="schoolAttend" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="School Attending" />
+                    <ErrorMessage name="schoolAttend"/>
                 </div>
 
-                <button type="submit" className="px-10 py-2 mb-2 bg-green-500 text-white rounded-full"><Link href="/orderslips">Confirm Information</Link></button>
+                <button type="submit" className="px-10 py-2 mb-2 bg-green-500 text-white rounded-full hover:bg-sky-700"><Link href="/orderslips">Confirm Information</Link></button>
             </Form>
         </Formik>
         

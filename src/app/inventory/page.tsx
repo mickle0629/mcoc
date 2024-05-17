@@ -194,7 +194,7 @@ useEffect(() => {
             </div>
           ))}
           <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full">Print List</button><br></br>
-          <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12">View Full Inventory</button>
+          <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12"><Link href="/fullinventory">View Full Inventory</Link></button>
         </div>
       </div>
 

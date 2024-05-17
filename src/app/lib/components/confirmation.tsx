@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
+import Link from 'next/link'
 
 const initialValues = {
   agree1: false,
@@ -35,7 +36,7 @@ const ConfirmationForm = () => {
                 <span className="text-black ml-2">I understand that inventory is limited and I may not get the size shoes I have registered for.</span>
               </label>
             </div>
-            <button type="submit" className="px-10 py-6 mt-16 bg-green-500 text-white text-2xl rounded-full text-nowrap grow-0 ">Place Order</button>
+            <Link href="/submitted"><button type="submit" className="px-10 py-6 mt-16 bg-green-500 text-white text-2xl rounded-full text-nowrap grow-0 ">Place Order</button></Link>
           </div>
         </Form>
       )}

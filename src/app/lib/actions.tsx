@@ -77,6 +77,7 @@ export async function selectShoeName(shoeid: number): Promise <string> {
     WHERE shoetypeid = ${shoeid}`
 
     const typeAsString = type.rows[0].shoename;
+    console.log(typeAsString);
 
     
 

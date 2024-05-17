@@ -17,6 +17,71 @@ interface Child {
     size: string | null;
 }
 
+/*
+const OrderSlips: React.FC = () => {
+    // Placeholder data for inventory items
+
+    const numbers: number[] = [1, 4];
+    const [pid, setPid] = useState<number | null>(null); 
+    const [fname, setFname] = useState<string | null>(null); 
+    const [lname, setlname] = useState<string | null>(null); 
+    const [email, setEmail] = useState<string | null>(null); 
+    const [number, setNumber] = useState<string | null>(null); 
+    const [cidRows, setChildIDRows] = useState<Array<number>| null>(null); 
+    const [childDictionary, setChildDictionary] = useState<{ [key: number]: Child }>({});
+    const childEntries = Object.entries(childDictionary);
+    const [pidRows, setParentIDRows] = useState<Array<number>| null>(null); 
+    const [parentDictionary, setParentDictionary] = useState<{ [key: number]: Parent }>({});
+    const parentEntries = Object.entries(parentDictionary);
+    
+
+    useEffect(() => {
+        async function updateChildDictionary() {
+            if (cidRows !== null) {
+                const newChildDictionary: { [key: number]: Child } = {};
+
+                for (let i = 0; i < cidRows.length; i++) {
+                    const cid = cidRows[i];
+                    const name = await selectChildname(cid);
+                    const lname = await selectChildlname(cid);
+                    const size = await selectShoeSize(cid);
+                    const type = await selectChildShoeType(cid);
+                    const shoeType = await selectShoeName(type);
+
+                    newChildDictionary[cid] = { name, lname, shoeType ,size};
+                }
+
+                setChildDictionary(newChildDictionary);
+            }
+        }
+
+        updateChildDictionary();
+    }, [cidRows]);
+
+    
+    useEffect(() => {
+        async function updateParentDictionary() {
+            if (numbers !== null) {
+                const newParentDictionary = await Promise.all(
+                    const orderID = numbers[i];
+                    const parentID =  await selectParentIDfromOrder(orderID);
+                    const name = await selectParentfname(parentID);
+                    const lName = await selectParentlname(parentID);
+                    const email = await selectParentemail(parentID);
+                    const phoneNum = await selectParentNumber(parentID);
+
+                    return{orderID, lName, name, email, phoneNum};
+                })
+            
+                setParentDictionary(newParentDictionary);
+            }
+        }
+
+        
+        updateParentDictionary();
+    }, [numbers]);
+*/
+
 const OrderSlips: React.FC = () => {
     // Placeholder data for inventory items
     const placeholderParent: Parent[] = [
@@ -33,16 +98,17 @@ const OrderSlips: React.FC = () => {
     const childEntries = Object.entries(childDictionary);
 
     useEffect(() => {
-        async function fetchParentID() {
+        async function fetchParentID(orderIdentification: number) {
             try {
-                const result = await selectParentIDfromOrder(3);
+                const result = await selectParentIDfromOrder(orderIdentification);
                 setPid(result); 
             } catch (error) {
                 console.error(error);
             }
         }
 
-        fetchParentID();
+        fetchParentID(4);
+        fetchParentID(1);
     }, []); 
 
     useEffect(() => {
@@ -146,7 +212,7 @@ const OrderSlips: React.FC = () => {
                 <div style={{ width: '100%', maxWidth: '400px' }}>
                     {placeholderParent.map((item) => (
                         <div
-                            key={item.orderID}
+                            key = {item.orderID}
                             style={{
                                 backgroundColor: '#f2f2f2',
                                 borderRadius: '10px',
@@ -154,6 +220,7 @@ const OrderSlips: React.FC = () => {
                                 marginBottom: '10px',
                             }}
                         >
+                            <p>{`Order Slip #1`}</p>
                             <p>{`Name: ${lname}, ${fname}`}</p>
                             <p>{`Email: ${email}`}</p>
                             <p>{`Phone Number: ${number}`}</p>

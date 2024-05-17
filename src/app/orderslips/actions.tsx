@@ -8,16 +8,12 @@
 
 import { sql } from '@vercel/postgres';
 
-
-
-
-
-
 export async function selectParentIDfromOrder(OrderID: number): Promise<number> {
+    console.log(OrderID);
     try {const id = await sql`
     SELECT idparent
     FROM orders
-    WHERE OrderID = ${OrderID};
+    WHERE orderid = ${OrderID};
     `;
     const idAsString = id.rows[0].idparent;
     const idAsInt = parseInt(idAsString, 10);
@@ -39,7 +35,7 @@ export async function selectParentfname(ParentID: number): Promise<string> {
 
     const nameAsString = name.rows[0].fname;
     
-    console.log(nameAsString);
+    //console.log(nameAsString);
     return nameAsString} catch(err) {
             console.log('Error =>' + err);
             throw err;

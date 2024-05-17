@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { selectInventoryNum, selectShoeName, selectShoeRows, selectShoeSize, selectShoeType } from "../actions";
-import Image from 'next/image'
 
 interface InventoryItem {
   id: string;

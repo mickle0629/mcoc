@@ -9,15 +9,17 @@
 import { sql } from '@vercel/postgres';
 
 
-export async function selectChildIDRows(ParentID : number): Promise <Array<number>> {
+
+
+export async function selectSoldRows(): Promise <Array<number>> {
     try { const id = await sql`
-    SELECT idchild
-    FROM child
-    WHERE idparent = ${ParentID};
+    SELECT shoeid
+    FROM available_shoe
+    WHERE numsold > 0;
     `;
 
-    const idArray: Array<number> = id.rows.map(row => row.idchild);
-        console.log(idArray);
+    const idArray: Array<number> = id.rows.map(row => row.shoeid);
+        
         return idArray;
     } catch (err) {
         console.log('Error =>' + err);
@@ -25,64 +27,70 @@ export async function selectChildIDRows(ParentID : number): Promise <Array<numbe
     }
 }
 
-export async function selectOrderRows(): Promise <Array<number>> {
-    try { const id = await sql`
-    SELECT orderid
-    FROM orders;
-    `;
+export async function selectSoldNum(shoeid: number): Promise <number> {
+    try{const inventory = await sql`
+    SELECT numsold
+    FROM available_shoe
+    WHERE shoeid = ${shoeid}`
 
-    const idArray: Array<number> = id.rows.map(row => row.orderid);
-        console.log(idArray);
-        return idArray;
-    } catch (err) {
-        console.log('Error =>' + err);
-        throw err;
-    }
-}
-export async function selectParentIDfromOrder(OrderID: number): Promise<number> {
-    try {const id = await sql`
-    SELECT idparent
-    FROM orders
-    WHERE OrderID = ${OrderID};
-    `;
-    const idAsString = id.rows[0].idparent;
-    const idAsInt = parseInt(idAsString, 10);
+    const typeAsString = inventory.rows[0].numsold;
+    const typeAsInt = parseInt(typeAsString, 10);
+    console.log(typeAsString);
+    console.log(typeAsInt);
     
-    //console.log(idAsInt)
-    return idAsInt} catch(err) {
-            console.log('Error =>' + err);
-            throw err;
-        }
     
-}
-
-export async function selectParentfname(ParentID: number): Promise<string> {
-    try {const name = await sql` 
-    SELECT fname
-    FROM parent
-    WHERE idparent = ${ParentID};
-    `;
-
-    const nameAsString = name.rows[0].fname;
-    
-    console.log(nameAsString);
-    return nameAsString} catch(err) {
+    return typeAsInt} catch(err) {
             console.log('Error =>' + err);
             throw err;
         }
 }
 
-export async function selectParentlname(ParentID: number): Promise<string> {
-    try {const lname = await sql`
-    SELECT lname
-    FROM parent
-    WHERE idparent = ${ParentID};
-    `;
+export async function selectShoeName(shoeid: number): Promise <string> {
+    try{const type = await sql`
+    SELECT shoename
+    FROM shoetype
+    WHERE shoetypeid = ${shoeid}`
 
-    const lnameAsString = lname.rows[0].lname;
+    const typeAsString = type.rows[0].shoename;
+   
 
-    return lnameAsString} catch(err) {
-        console.log('Error =>' + err);
-        throw err;
-    }
+    
+    
+    return typeAsString} catch(err) {
+            console.log('Error =>' + err);
+            throw err;
+        }
+}
+
+export async function selectShoeSize(shoeid: number): Promise <number> {
+    try{const type = await sql`
+    SELECT shoesize
+    from available_shoe
+    WHERE shoeid = ${shoeid}`
+
+    const typeAsString = type.rows[0].shoesize;
+    const typeAsInt = parseInt(typeAsString, 10);
+    
+    
+    return typeAsInt} catch(err) {
+            console.log('Error =>' + err);
+            throw err;
+        }
+}
+
+export async function selectShoeType(shoeid: number): Promise <number> {
+    try{const type = await sql`
+    SELECT shoetype
+    FROM available_shoe
+    WHERE shoeid = ${shoeid}`
+
+    const typeAsString = type.rows[0].shoetype;
+    const typeAsInt = parseInt(typeAsString, 10);
+    
+    
+    return typeAsInt} catch(err) {
+            console.log('Error =>' + err);
+            throw err;
+        }
+
 }

@@ -27,7 +27,7 @@ export async function selectShoeRows(): Promise <Array<number>> {
     `;
     
     const idArray: Array<number> = id.rows.map(row => row.shoeid);
-        console.log(idArray)
+
         
         return idArray;
     } catch (err) {
@@ -78,7 +78,7 @@ export async function selectShoeName(shoeid: number): Promise <string> {
     const typeAsString = type.rows[0].shoename;
 
     
-    console.log(typeAsString)
+
     return typeAsString} catch(err) {
             console.log('Error =>' + err);
             throw err;
@@ -96,7 +96,6 @@ export async function selectInventoryNum(shoeid: number): Promise <number> {
     const typeAsInt = parseInt(typeAsString, 10);
 
     
-    console.log(typeAsInt)
     return typeAsInt} catch(err) {
             console.log('Error =>' + err);
             throw err;

@@ -115,7 +115,7 @@ const InventoryPage: React.FC = () => {
               
             </div>
           ))}
-          <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full"><Link href="/kidInfo">Submit</Link></button>
+          <Link href="/"><button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full">Submit</button></Link>
         </div>
       </div>
       </main>

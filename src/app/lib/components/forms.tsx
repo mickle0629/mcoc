@@ -79,7 +79,7 @@ export default function EntryForm() {
                     setSubmitting(false);
                 }, 400)
                 //Changes current path to the shoe-browsing section
-                router.push('/browse');
+                router.push('/');
             }}
         >
             <Form className="flex flex-col bg-white border-2 border-black rounded-md justify-center text-left gap-5 w-72 items-center mx-auto my-20">

@@ -42,7 +42,7 @@ export default function AddInventory() {
                 
                 {/* Individual fields here. Each field has a wrapping div for styling purposes */}
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="shoeSize" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Age" />
+                    <Field name="shoeSize" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="Size" />
                     <ErrorMessage name="Shoe Size" />
                 </div>
 

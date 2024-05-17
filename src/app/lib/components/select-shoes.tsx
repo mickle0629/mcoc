@@ -115,11 +115,10 @@ const InventoryPage: React.FC = () => {
                   </div>
 
               <p>{`${item.type} - Size ${item.size}`}</p>
-<<<<<<< HEAD
+
               <button type="submit" className="px-8 py-2 mb-2 bg-green-500 btn-sm float-right text-white text-md rounded-full">Assign to Child</button>
-=======
+
               <button type="submit" className="px-8 py-2 mb-2 bg-green-500 btn-sm float-right text-white text-md rounded-full hover:bg-sky-700 drop-shadow-sm">Assign Shoe</button>
->>>>>>> 4ac6f41e921d768875aeaeaa4776c6189f746030
               
             </div>
           ))}

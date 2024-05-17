@@ -38,7 +38,7 @@ const ConfirmationForm = () => {
             </div>
 
             <Link href="/submitted"><button type="submit" className="px-10 py-6 mt-16 bg-green-500 text-white text-2xl rounded-full text-nowrap grow-0 ">Place Order</button></Link>
-            <button type="submit" className="px-10 py-6 mt-16 bg-green-500 text-white text-2xl rounded-full text-nowrap grow-0  hover:bg-sky-700">Place Order</button>
+
           </div>
         </Form>
       )}

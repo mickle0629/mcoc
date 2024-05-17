@@ -26,8 +26,8 @@ const InventoryPage: React.FC = () => {
   
 
   return (
-<main className="flex bg-white justify-center min-h-screen py-2 px-20">
-    <div className="bg-white text-black flex flex-col items-center p-7 p-10 w-[80vw]">
+<main className="flex bg-[url('./MCOCBackground.jpeg')] justify-center min-h-screen py-2 px-20">
+    <div className="bg-white text-black flex flex-col items-center p-7 p-10 w-[80vw] border-black border-2 m-2 rounded-lg">
         <div className="flex justify-between w-full items-center mb-5">
             <h1 className="text-3xl">Orders</h1>
             <div className="flex items-center">

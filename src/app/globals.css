@@ -8,6 +8,13 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+.bg {
+  background-image: url("./MCOCBackground.jpeg");
+  background-size: cover; /* or 'contain', depending on how you want the image to fit /
+  background-repeat: no-repeat; / prevent the image from repeating /
+  background-position: center center; / center the image */
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;

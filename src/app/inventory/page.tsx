@@ -182,8 +182,8 @@ useEffect(() => {
 }, [OrderRows]);
 
   return (
-    <main className="flex bg-white justify-center min-h-screen">
-      <div className="bg-white text-black flex flex-col items-left p-7 ">
+    <main className="flex bg-[url('./MCOCBackground.jpeg')] justify-center min-h-screen">
+      <div className="bg-white text-black flex flex-col items-left p-7 border-black border-2 m-4 rounded-lg">
         <h1 className="text-3xl p-10 pb-15 pl-16">Current Inventory</h1>
         <div className="w-full max-w-md">
           {placeholderQuantity.slice(0,6).map((item) => (
@@ -193,12 +193,12 @@ useEffect(() => {
               
             </div>
           ))}
-          <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full">Print List</button><br></br>
-          <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12"><Link href="/fullinventory">View Full Inventory</Link></button>
+          <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full hover:bg-sky-700">Print List</button><br></br>
+          <button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12 hover:bg-sky-700"><Link href="/fullinventory">View Full Inventory</Link></button>
         </div>
       </div>
 
-      <div className="bg-white text-black flex flex-col items-right p-7">
+      <div className="bg-white text-black flex flex-col items-right p-7 border-black border-2 m-4 rounded-lg">
       <h1 className="text-3xl p-10 pb-15 pl-16">Recent Orders</h1>
         <div className="w-full max-w-md">
         {orderEntries.map(([id, parent]) => (
@@ -208,7 +208,7 @@ useEffect(() => {
              </div>
                             
           ))}
-          <br></br><br></br><button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12"><Link href="/orders">View All Orders</Link></button>
+          <br></br><br></br><button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-lg rounded-full px-12 hover:bg-sky-700"><Link href="/orders">View All Orders</Link></button>
         </div>
       </div>
     </main>

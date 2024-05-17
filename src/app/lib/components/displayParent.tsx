@@ -86,7 +86,7 @@ const OrderSlips: React.FC = () => {
     }, [pid]); 
 
     return (
-        <main className="flex flex-col bg-white min-h-screen">
+        <main className="flex flex-col bg-[url('./MCOCBackground.jpeg')] min-h-screen">
             <div
                 style={{
                     backgroundColor: 'white',

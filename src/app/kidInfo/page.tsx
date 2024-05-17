@@ -3,7 +3,7 @@ import EntryFormKid from "../lib/components/forms_kid";
 
 export default function Home() {
   return (
-    <main className="flex flex-col min-h-screen bg-white">
+    <main className="flex flex-col min-h-screen bg-[url('./MCOCBackground.jpeg')]">
       {/* registration form */}
       <div className="w-auto content-center">
         <EntryFormKid/>

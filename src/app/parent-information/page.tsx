@@ -6,10 +6,10 @@ import EntryForm from "../lib/components/forms";
 
 export default function PartentInfo() {
   return (
-    <main className="flex flex-col min-h-screen bg-white">
+    <main className="flex flex-col min-h-screen bg-[url('./MCOCBackground.jpeg')]">
       {/* registration form */}
       <div className="w-auto content-center">
-        <EntryForm />
+        <EntryForm/>
       </div>
 
       {/* footer */}

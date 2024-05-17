@@ -83,9 +83,9 @@ export default function EntryForm() {
                 router.push('/');
             }}
         >
-            <Form className="flex flex-col justify-center text-left gap-5 w-72 items-center mx-auto my-40">
+            <Form className="flex flex-col bg-white border-2 border-black rounded-md justify-center text-left gap-5 w-72 items-center mx-auto my-20">
                 {/* Form Title */}
-                <p className="text-black text-2xl text-center">Parent Information Entry</p>
+                <p className="text-black text-2xl text-center mt-6">Parent Information Entry</p>
                 
                 {/* Individual fields here. Each field has a wrapping div for styling purposes */}
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
@@ -118,7 +118,7 @@ export default function EntryForm() {
                     <ErrorMessage name="zip"/>
                 </div>
 
-                <button type="submit"  className="px-10 py-2 mb-2 bg-green-500 text-white rounded-full" >Confirm Information </button>
+                <button type="submit"  className="px-10 py-2 mb-8 bg-green-500 text-white rounded-full hover:bg-sky-700" >Confirm Information </button>
             </Form>
         </Formik>
     );

@@ -110,16 +110,11 @@ const InventoryPage: React.FC = () => {
         <div className="w-full max-w-md">
           {placeholderInventory.map((item) => (
             <div key={item.id} className="bg-slate-200 rounded-lg p-5 mb-2.5 py-20">
-              <div className="bg-[url('./Shoes2(copy).png')] w-24 h-24 flex flex-col items-left border-black border-2  rounded-lg">
-              
-                  </div>
-
               <p>{`${item.type} - Size ${item.size}`}</p>
 
-              <button type="submit" className="px-8 py-2 mb-2 bg-green-500 btn-sm float-right text-white text-md rounded-full">Assign to Child</button>              
+              <Link href="/"><button type="submit" className="px-8 py-2 mb-2 bg-green-500 btn-sm float-right text-white text-md rounded-full">Assign to Child</button></Link>              
             </div>
           ))}
-          <Link href="/"><button type="submit" className="px-10 py-2 mb-2 bg-green-500 justify-center text-white text-md rounded-full hover:bg-sky-700">Submit</button></Link>
         </div>
       </div>
       </main>

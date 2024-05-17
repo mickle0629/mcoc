@@ -72,7 +72,7 @@ export default function EntryFormKid() {
         >
             <Form className="flex flex-col justify-center text-left gap-5 w-72 items-center mx-auto my-40">
                 {/* Form Title */}
-                <p className="text-black text-2xl text-center">Information Entry</p>
+                <p className="text-black text-2xl text-center">Child Information</p>
                 
                 {/* Individual fields here. Each field has a wrapping div for styling purposes */}
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
@@ -120,7 +120,7 @@ export default function EntryFormKid() {
                     <ErrorMessage name="school"/>
                 </div>
 
-                <button type="submit" className="px-10 py-2 mb-2 bg-green-500 text-white rounded-full"><Link href="/orderslips">Confirm Information</Link></button>
+                <Link href="/browse"><button type="submit" className="px-10 py-2 mb-2 bg-green-500 text-white rounded-full">Confirm Information</button></Link>
             </Form>
         </Formik>
         

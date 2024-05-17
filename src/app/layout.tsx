@@ -19,7 +19,7 @@ export default function RootLayout({
       <body className={inter.className}>
         {/* Top bar */}
         <div className="bg-green-500 min-w-full h-[35px]">
-          <h1 className="pt-1 flex justify-center">Mission Community Outreach Center: School Shoes for Kids</h1>
+          <h1 className="pt-1 flex justify-center text-white">Mission Community Outreach Center: School Shoes for Kids</h1>
         </div>
         {children}
         </body>

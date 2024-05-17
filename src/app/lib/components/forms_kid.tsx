@@ -37,8 +37,7 @@ export default function EntryFormKid() {
                 age: '',
                 gradeOfSchool: '',
                 schoolAttend: '',
-                shoeSize: '',
-                shoeStyle:'',
+                shoeid: '',
             }}
             //input verification using Yup
             validationSchema={Yup.object({

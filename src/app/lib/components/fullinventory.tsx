@@ -113,11 +113,6 @@ const InventoryPage: React.FC = () => {
         <div className="w-full max-w-md">
           {placeholderInventory.map((item) => (
             <div key={item.id} className="bg-slate-200 min-w-96 rounded-lg p-5 mb-2.5">
-              <Image
-               src = "/../../Shoes2.png" 
-               fill={true}
-               alt="Green Shoe Icon"
-              />
               <p>{`${item.type} - Size ${item.size}`}</p>
               <p>{`Inventory - ${item.inventory}` }</p>
               

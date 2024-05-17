@@ -108,7 +108,7 @@ export default async function EntryForm() {
         >                
             <Form className="flex flex-col bg-white border-2 border-black rounded-md justify-center text-left gap-5 w-72 items-center mx-auto my-20">
                 {/* Form Title */}
-                <p className="text-black text-2xl text-center mt-6">Parent Information Entry</p>
+                <p className="text-black text-2xl text-center mt-6">Guardian Information Entry</p>
                 
                 {/* Individual fields here. Each field has a wrapping div for styling purposes */}
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">

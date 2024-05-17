@@ -51,8 +51,6 @@ export default function EntryFormKid() {
                     .integer('Please use numbers to enter age')
                     .required('Required!'),
                 gradeOfSchool: Yup.string()    
-                    .matches(gradeLims, 'Must be Between Grades K-8')
-                    .length(1,'Use \'K\' or 1-8')
                     .required('Required!'),
                 schoolAttend: Yup.string()
                     .required('Required!'),
@@ -75,7 +73,7 @@ export default function EntryFormKid() {
                 
                 {/* Individual fields here. Each field has a wrapping div for styling purposes */}
                 <div className="flex flex-row gap-4 items-center text-rose-600 grow text-nowrap">
-                    <Field name="firstName" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12 hover:bg-sky-700" placeholder="First Name" />
+                    <Field name="firstName" type="text" className="border-2 border-gray-500 rounded-lg text-black indent-4 min-h-12" placeholder="First Name" />
                     <ErrorMessage name="firstName" className="" />
                 </div>
                 
@@ -119,7 +117,7 @@ export default function EntryFormKid() {
                     <ErrorMessage name="schoolAttend"/>
                 </div>
 
-                <Link href="/browse"><button type="submit" className="px-10 py-2 mb-2 bg-green-500 text-white rounded-full hover:bg-sky-700">Confirm Information</button></Link>
+                <button type="submit" className="px-10 py-2 mb-2 bg-green-500 text-white rounded-full hover:bg-sky-700">Confirm Information</button>
             </Form>
         </Formik>
         
